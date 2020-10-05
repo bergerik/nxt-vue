@@ -80,4 +80,9 @@ a:hover {
   background-color: #000000;
   color: #ffffff;
 }
+
+.btn.white_bg:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
 </style>

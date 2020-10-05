@@ -29,7 +29,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.footer__container {
-  max-width: 1142px;
+footer {
+  background-color: #000000;
+
+  h1 {
+    font-size: 30px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  .footer__container {
+    max-width: 1142px;
+    height: 689px;
+    color: #fff;
+
+    .box1 {
+    }
+  }
 }
 </style>
