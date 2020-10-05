@@ -1,28 +1,83 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Header />
+    <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Footer,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h5 {
+  font-weight: 400;
+  font-family: "DIN Engschrift Std";
+}
+
+h1 {
+  font-size: 100px;
+  line-height: 110px;
+}
+
+h2 {
+  font-size: 75px;
+  line-height: 82.5px;
+}
+
+h5 {
+  font-size: 20px;
+  line-height: 22px;
+}
+
+h3 {
+  font-size: 45px;
+  line-height: 49.5;
+}
+
+a {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 18px;
+  color: #5e6364;
+  font-family: "Open Sans";
+}
+a:hover {
+  text-decoration: underline;
+  color: #f58220;
+}
+
+.btn {
+  padding: 17px 45px;
+  border: 1px solid;
+  border-radius: 25px;
+  background-color: #f58220;
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s ease-out;
+}
+
+.btn.black_bg:hover {
+  background-color: #000000;
+  color: #ffffff;
 }
 </style>
