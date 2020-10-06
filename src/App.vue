@@ -26,6 +26,11 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
+hr {
+  border: none;
+  border-top: 1px solid #333333;
+  margin-bottom: 30px;
+}
 h1,
 h2,
 h3,
@@ -54,12 +59,16 @@ h3 {
   line-height: 49.5;
 }
 
+a,
+p {
+  font-family: "Open Sans";
+}
+
 a {
   text-decoration: none;
   font-size: 14px;
   line-height: 18px;
   color: #5e6364;
-  font-family: "Open Sans";
 }
 a:hover {
   text-decoration: underline;
@@ -67,7 +76,7 @@ a:hover {
 }
 
 .btn {
-  padding: 17px 45px;
+  padding: 17px 35px;
   border: 1px solid;
   border-radius: 25px;
   background-color: #f58220;

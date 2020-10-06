@@ -63,5 +63,14 @@ header {
       }
     }
   }
+
+  @media (max-width: 950px) {
+    li {
+      display: none;
+    }
+    li:last-child {
+      display: block;
+    }
+  }
 }
 </style>
