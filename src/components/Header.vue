@@ -36,7 +36,7 @@ header {
   background-color: #ffffff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .img__container {
     max-height: 60px;
@@ -70,6 +70,19 @@ header {
     }
     li:last-child {
       display: block;
+    }
+  }
+
+  @media (max-width: 435px) {
+    .btn {
+      padding: 10px 25px;
+    }
+  }
+
+  @media (max-width: 330px) {
+    .btn {
+      padding: 5px 8px;
+      font-size: 12px;
     }
   }
 }

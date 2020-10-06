@@ -1,18 +1,21 @@
 <template>
   <div>
     <Header />
+    <Questions />
     <Footer />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import Questions from "./components/Questions";
 import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
     Header,
+    Questions,
     Footer,
   },
 };

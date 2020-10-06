@@ -11,7 +11,9 @@
             <p>281 33 Hässleholm</p>
           </div>
           <div class="btn__container">
-            <a href="#" class="btn white_bg">Kontakta oss</a>
+            <a href="https://nxte.se/kontakt" class="btn white_bg"
+              >Kontakta oss</a
+            >
           </div>
         </div>
 
@@ -19,20 +21,22 @@
 
         <div class="box2">
           <div class="left">
-            <a class="h2__style" href="#">E-handelslösningar</a>
+            <a class="h2__style" href="https://nxte.se/e-handelslosningar"
+              >E-handelslösningar</a
+            >
             <div>
-              <a href="#">B2B</a>
-              <a href="#">B2C</a>
-              <a href="#">B2B & B2C</a>
-              <a href="#">Detta ingår</a>
+              <a href="https://nxte.se/b2b">B2B</a>
+              <a href="https://nxte.se/b2c">B2C</a>
+              <a href="https://nxte.se/b2b-b2c">B2B & B2C</a>
+              <a href="https://nxte.se/detta-ingar">Detta ingår</a>
             </div>
             <div>
-              <a class="h2__style" href="#">Kunder</a>
+              <a class="h2__style" href="https://nxte.se/kunder">Kunder</a>
               <a class="a" href="#">Kundcase</a>
             </div>
             <div>
-              <a class="h2__style" href="#">Kontakt</a>
-              <a href="#">Boka demo</a>
+              <a class="h2__style" href="https://nxte.se/kontakt">Kontakt</a>
+              <a href="https://nxte.se/boka-demo">Boka demo</a>
             </div>
           </div>
 
@@ -43,10 +47,12 @@
               <a href="#">Underhåll</a>
               <a href="#">Service- och driftavtal</a>
             </div>
-            <a class="h2__style m-top" href="#">Partners</a>
+            <a class="h2__style m-top" href="https://nxte.se/partners"
+              >Partners</a
+            >
             <div>
-              <a href="#">Betalsätt</a>
-              <a href="#">Affärssystem</a>
+              <a href="https://nxte.se/betalsatt">Betalsätt</a>
+              <a href="https://nxte.se/affarsystem">Affärssystem</a>
             </div>
           </div>
         </div>
