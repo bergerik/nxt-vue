@@ -139,6 +139,7 @@ footer {
     color: #fff;
     padding: 40px;
     padding-bottom: 60px;
+    margin: 0 auto;
 
     .box__container {
       display: grid;
