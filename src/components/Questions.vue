@@ -4,12 +4,12 @@
       <!-- Progress bar! -->
       <div class="step-row">
         <div :style="{ width: progress }" id="progress"></div>
-        <div class="step-col"><small>Step 1</small></div>
-        <div class="step-col"><small>Step 2</small></div>
-        <div class="step-col"><small>Step 3</small></div>
-        <div class="step-col"><small>Step 4</small></div>
-        <div class="step-col"><small>Step 5</small></div>
-        <div class="step-col"><small>Step 6</small></div>
+        <div class="step-col"><strong>Step 1</strong></div>
+        <div class="step-col"><strong>Step 2</strong></div>
+        <div class="step-col"><strong>Step 3</strong></div>
+        <div class="step-col"><strong>Step 4</strong></div>
+        <div class="step-col"><strong>Step 5</strong></div>
+        <div class="step-col"><strong>Step 6</strong></div>
       </div>
 
       <form :style="{ left: form1 }" id="form1">
@@ -62,7 +62,7 @@
 
         <div class="btn-box">
           <button
-            @click="(form1 = '50%'), (form2 = '1100px'), (progress = '15%')"
+            @click="(form1 = '50%'), (form2 = '1100px'), (progress = '16.7%')"
             class="btn black_bg"
             id="back1"
             type="button"
@@ -132,7 +132,7 @@
 
         <div class="btn-box">
           <button
-            @click="(form2 = '50%'), (form3 = '1100px'), (progress = '30%')"
+            @click="(form2 = '50%'), (form3 = '1100px'), (progress = '33.7%')"
             class="btn black_bg"
             id="back2"
             type="button"
@@ -187,7 +187,7 @@
 
         <div class="btn-box">
           <button
-            @click="(form3 = '50%'), (form4 = '1100px'), (progress = '45%')"
+            @click="(form3 = '50%'), (form4 = '1100px'), (progress = '49.7%')"
             class="btn black_bg"
             id="back3"
             type="button"
@@ -225,7 +225,7 @@
 
         <div class="btn-box">
           <button
-            @click="(form4 = '50%'), (form5 = '1100px'), (progress = '60%')"
+            @click="(form4 = '50%'), (form5 = '1100px'), (progress = '66.7%')"
             class="btn black_bg"
             id="back4"
             type="button"
@@ -279,7 +279,7 @@
 
         <div class="btn-box">
           <button
-            @click="(form5 = '50%'), (form6 = '1100px'), (progress = '120px')"
+            @click="(form5 = '50%'), (form6 = '1100px'), (progress = '83.7%')"
             class="btn black_bg"
             id="back5"
             type="button"
@@ -292,6 +292,7 @@
             type="submit"
             :disabled="answers[5].f_svar === null"
             :style="answers[5].f_svar === null && disabled"
+            @click.prevent="sendData"
           >
             Submit
           </button>
@@ -305,6 +306,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Questions",
   data() {
@@ -372,6 +375,15 @@ export default {
         this.disableInputText = false;
       }
     },
+
+    sendData: function () {
+      axios
+        .post("http://jsonplaceholder.typicode.com/posts", {
+          body: this.answers,
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    },
   },
 };
 </script>
@@ -382,7 +394,7 @@ export default {
   padding: 0;
   max-width: 800px;
   border: 1px solid;
-  height: 400px;
+  height: 500px;
   margin: 8% auto;
   background-color: #fff;
   border-radius: 5px;
@@ -395,14 +407,21 @@ export default {
     color: #777;
     font-size: 20px;
     line-height: 20px;
+    // padding-top: 20px;
+  }
+
+  #form6 input {
+    border-bottom: 1px solid;
+    padding: 15px;
   }
 
   form {
     // width: 700px;
     overflow-y: auto;
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
-    height: 350px;
+    height: 420px;
+    padding: 10px;
     position: absolute;
     top: 55%;
     left: 50%;
@@ -520,6 +539,7 @@ export default {
     // border: 1px solid red;
     height: 40px;
     margin: 0 auto;
+    margin-bottom: 100px;
     display: flex;
     // align-items: center;
     justify-content: flex-start;
@@ -535,6 +555,7 @@ export default {
       color: #333;
       position: relative;
       // border: 1px solid green;
+      font-size: 16px;
     }
 
     #progress {
