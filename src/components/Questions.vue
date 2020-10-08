@@ -151,6 +151,7 @@
           </button>
         </div>
       </form>
+
       <!-- ///////////////////////////// -->
       <!-- ///////////////////////////// -->
       <!-- ///////////////////////////// -->
@@ -158,19 +159,27 @@
       <form :style="{ left: form4 }" id="form4">
         <h3>{{ answers[3].d }}</h3>
         <div class="answer__container">
-          <div>
-            <label>Ja</label>
-            <input type="radio" value="ja" v-model="answers[3].d_svar" />
-            <br />
-            <input
-              type="text"
-              v-model="answers[3].d_text"
-              placeholder="Vilket?"
-              :disabled="disabledInput"
-              :style="answers[3].d_svar === null && disabled"
-            />
+          <div class="inputText__container">
+            <div class="step4__ja">
+              <label>Ja</label>
+              <input type="radio" value="ja" v-model="answers[3].d_svar" />
+            </div>
+            <div
+              class="step4__input"
+              :style="
+                answers[3].d_svar === null || answers[3].d_svar === 'nej'
+                  ? { display: 'none' }
+                  : { display: 'block' }
+              "
+            >
+              <input
+                type="text"
+                v-model="answers[3].d_text"
+                placeholder="Vilket?"
+              />
+            </div>
           </div>
-          <div>
+          <div class="step4__nej">
             <label>Nej</label>
             <input type="radio" value="nej" v-model="answers[3].d_svar" />
           </div>
@@ -320,7 +329,7 @@ export default {
 
         {
           d: "Använder ni något affärssystem? (Samma som ovan)",
-          d_svar: "",
+          d_svar: null,
           d_text: "",
         },
 
@@ -393,30 +402,74 @@ export default {
     overflow-y: auto;
     width: 70%;
     margin: 0 auto;
-    height: 300px;
+    height: 350px;
     position: absolute;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.5s ease;
     overflow-y: auto;
-    border: 1px solid blue;
+    // border: 1px solid blue;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .answer__container {
-      border: 1px solid red;
+      // border: 1px solid red;
       width: 50%;
       text-align: center;
 
-      div {
-        border: 1px solid;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+      input[type="text"] {
+        width: 100%;
         padding: 10px;
-        border: 1px solid blue;
+      }
+
+      div {
+        border-bottom: 1px solid;
+        // border: 1px solid red;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 10px 0;
+        // padding: 10px;
+        // border: 1px solid blue;
+
+        label {
+          // border: 1px solid;
+          flex: 0.5;
+        }
+      }
+
+      .inputText__container {
+        .step4__ja,
+        .step4__input,
+        .step4__nej {
+          border: none;
+        }
+        .step4__ja {
+          transform: translateY(12px);
+          border-bottom: 1px solid;
+        }
+        // border: 1px solid green;
+        display: flex;
+        flex-direction: column;
+        // height: 100%;
+
+        div {
+          display: flex;
+          // border: 1px solid blue;
+          width: 100%;
+          // padding: 10px 0;
+
+          input[type="text"] {
+            // border: 1px solid red;
+            font-size: 16px;
+            transform: translateY(20px);
+            width: 100%;
+            padding: 10px 20px;
+            // border: 1px solid red;
+          }
+        }
       }
     }
 
@@ -436,7 +489,7 @@ export default {
       // width: 100%;
       padding: 10px 5px;
       border: 0;
-      border-bottom: 1px solid #999;
+      // border-bottom: 1px solid #999;
       outline: none;
       background: transparent;
 
@@ -464,7 +517,7 @@ export default {
     // width: 360px;
     // width: 700px;
     width: 100%;
-    border: 1px solid red;
+    // border: 1px solid red;
     height: 40px;
     margin: 0 auto;
     display: flex;
@@ -475,11 +528,13 @@ export default {
 
     .step-col {
       // width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      // text-align: center;
       color: #333;
       position: relative;
-      border: 1px solid green;
+      // border: 1px solid green;
     }
 
     #progress {
@@ -488,21 +543,32 @@ export default {
       width: 16.7%;
       text-align: left;
 
-      // background: linear-gradient(to right, #ff105f, #ffad06);
-      background-color: gray;
+      background: linear-gradient(to right, #ff105f, #ffad06);
+      // background-color: gray;
       transition: 1s ease;
 
       &::after {
-        // content: "";
-        // height: 0;
-        // width: 0;
-        // border-top: 20px solid transparent;
-        // border-bottom: 20px solid transparent;
-        // position: absolute;
-        // right: -20px;
-        // top: 0;
-        // border-left: 20px solid #ffad06;
+        content: "";
+        height: 0;
+        width: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        position: absolute;
+        right: -20px;
+        top: 0;
+        border-left: 20px solid #ffad06;
       }
+    }
+  }
+
+  @media (max-width: 370px) {
+    .btn {
+      font-size: 12px;
+      padding: 10px 25px;
+    }
+
+    ::placeholder {
+      font-size: 12px;
     }
   }
 }
