@@ -290,8 +290,8 @@
             class="btn black_bg"
             id="next6"
             type="submit"
-            :disabled="answers[5].f_svar === null"
-            :style="answers[5].f_svar === null && disabled"
+            :disabled="true"
+            :style="disableSubmitBtn && disabled"
             @click.prevent="sendData"
           >
             Submit
@@ -338,15 +338,15 @@ export default {
 
         {
           e: "Vill ni rikta er mot befintliga eller nya kunder?",
-          e_svar: "",
+          e_svar: null,
         },
 
         {
           f: "Kontakt uppgifter?",
-          f_namn: "",
-          e_namn: "",
-          tel: "",
-          email: "",
+          f_namn: null,
+          e_namn: null,
+          tel: null,
+          email: null,
         },
       ],
 
@@ -360,6 +360,7 @@ export default {
 
       // When btn is disabled
       disableInputText: false,
+      disableSubmitBtn: false,
       disabled: {
         backgroundColor: "#dddddd",
         cursor: "context-menu",
@@ -376,7 +377,42 @@ export default {
       }
     },
 
+    // disableSubmit: function () {
+    //   const fNamn = this.answers[5].f_namn;
+    //   const eNamn = this.answers[5].e_namn;
+    //   const tel = this.answers[5].tel;
+    //   const email = this.answers[5].email;
+
+    //   if (
+    //     fNamn === null ||
+    //     fNamn === "" ||
+    //     fNamn.length < 3 ||
+    //     eNamn === null ||
+    //     eNamn === "" ||
+    //     eNamn.length < 3 ||
+    //     tel === null ||
+    //     tel === "" ||
+    //     tel.length < 3 ||
+    //     email === null ||
+    //     email === "" ||
+    //     email.length < 3
+    //   ) {
+    //     this.disableSubmitBtn = true;
+    //   } else {
+    //     this.disableSubmitBtn = false;
+    //   }
+    // },
+
     sendData: function () {
+      const answer = this.answers[5];
+      if (
+        answer.f_namn ||
+        answer.e_namn ||
+        answer.tel ||
+        answer.email === null
+      ) {
+        console.log("hej");
+      }
       axios
         .post("http://jsonplaceholder.typicode.com/posts", {
           body: this.answers,
@@ -564,7 +600,8 @@ export default {
       width: 16.7%;
       text-align: left;
 
-      background: linear-gradient(to right, #ff105f, #ffad06);
+      // background: linear-gradient(to right, #ff105f, #ffad06);
+      background: linear-gradient(to right, #df4276, #f58220);
       // background-color: gray;
       transition: 1s ease;
 
@@ -577,7 +614,7 @@ export default {
         position: absolute;
         right: -20px;
         top: 0;
-        border-left: 20px solid #ffad06;
+        border-left: 20px solid #f58220;
       }
     }
   }
