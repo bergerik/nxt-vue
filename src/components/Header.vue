@@ -5,13 +5,13 @@
     </div>
     <nav>
       <ul>
-        <li>
+        <!-- <li>
           <a href="https://nxte.se/e-handelslosningar">E-handelslösningar</a>
         </li>
         <li><a href="#">Tjänster</a></li>
         <li><a href="https://nxte.se/kunder">Kunder</a></li>
         <li><a href="https://nxte.se/partners">Partners</a></li>
-        <li><a href="https://nxte.se/kontakt">Kontakt</a></li>
+        <li><a href="https://nxte.se/kontakt">Kontakt</a></li> -->
         <li>
           <a class="btn black_bg" href="https://nxte.se/boka-demo">Boka demo</a>
         </li>

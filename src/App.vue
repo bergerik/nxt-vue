@@ -23,6 +23,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("");
 
 * {
   padding: 0;
@@ -39,7 +40,7 @@ h2,
 h3,
 h5 {
   font-weight: 400;
-  font-family: "DIN Engschrift Std";
+  font-family: "DIN_1451 LT W04 Engschrift";
 }
 
 h1 {
@@ -80,7 +81,7 @@ a:hover {
 
 .btn {
   padding: 17px 35px;
-  border: 1px solid;
+  /* border: 1px solid; */
   border-radius: 25px;
   background-color: #f58220;
   color: #ffffff;

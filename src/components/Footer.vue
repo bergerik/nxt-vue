@@ -5,6 +5,10 @@
         <div class="box1">
           <h1>NXT - Ett intelligentare system</h1>
           <p class="p">Utvecklat av Exakta Software - En del av Exakta Group</p>
+          <p class="p">
+            Exakta ES Sweden AB <br />
+            556782-2233
+          </p>
           <h2>Besökadress</h2>
           <div>
             <p>Bäckhagsvägen 11</p>
@@ -32,7 +36,6 @@
             </div>
             <div>
               <a class="h2__style" href="https://nxte.se/kunder">Kunder</a>
-              <a class="a" href="#">Kundcase</a>
             </div>
             <div>
               <a class="h2__style" href="https://nxte.se/kontakt">Kontakt</a>
@@ -41,19 +44,20 @@
           </div>
 
           <div class="right">
-            <a class="h2__style" href="#">Tjänster</a>
+            <a class="h2__style" href="https://nxte.se/partners">Partners</a>
             <div>
-              <a href="#">Webhotell</a>
-              <a href="#">Underhåll</a>
-              <a href="#">Service- och driftavtal</a>
+              <a href="https://nxte.se/fraktsatt">Fraktsätt</a>
+              <a href="https://nxte.se/forsaljningskanaler"
+                >Försäljningskanaler</a
+              >
+              <a href="https://nxte.se/betalsatt">Betalsätt</a>
+              <a href="https://nxte.se/affarsystem">Affärsystem</a>
             </div>
-            <a class="h2__style m-top" href="https://nxte.se/partners"
-              >Partners</a
-            >
-            <div>
+            <a class="h2__style m-top" href="https://nxte.se/om-oss">Om oss</a>
+            <!-- <div>
               <a href="https://nxte.se/betalsatt">Betalsätt</a>
               <a href="https://nxte.se/affarsystem">Affärssystem</a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@
         <div class="step-col"><strong>Step 6</strong></div>
       </div>
 
-      <form :style="{ left: form1 }" id="form1">
+      <form :style="{ left: form1, visibility: showForm1 }" id="form1">
         <div>
           <h3>{{ answers[0].a }}</h3>
         </div>
@@ -32,7 +32,13 @@
             :disabled="answers[0].a_svar === null"
             class="btn black_bg"
             :style="answers[0].a_svar === null && disabled"
-            @click="(form1 = '-1000px'), (form2 = '50%'), (progress = '33.7%')"
+            @click="
+              (form1 = '-1000px'),
+                (form2 = '50%'),
+                (progress = '33.7%'),
+                (showForm1 = 'hidden'),
+                (showForm2 = 'visible')
+            "
             type="button"
           >
             Next
@@ -40,10 +46,8 @@
         </div>
       </form>
       <!-- //////////////////////////////////// -->
-      <!-- //////////////////////////////////// -->
-      <!-- //////////////////////////////////// -->
 
-      <form :style="{ left: form2 }" id="form2">
+      <form :style="{ left: form2, visibility: showForm2 }" id="form2">
         <h3>{{ answers[1].b }}</h3>
         <div class="answer__container">
           <div>
@@ -62,7 +66,13 @@
 
         <div class="btn-box">
           <button
-            @click="(form1 = '50%'), (form2 = '1100px'), (progress = '16.7%')"
+            @click="
+              (form1 = '50%'),
+                (form2 = '1100px'),
+                (progress = '16.7%'),
+                (showForm1 = 'visible'),
+                (showForm2 = 'hidden')
+            "
             class="btn black_bg"
             id="back1"
             type="button"
@@ -70,7 +80,13 @@
             Back
           </button>
           <button
-            @click="(form2 = '-1000px'), (form3 = '50%'), (progress = '49.7%')"
+            @click="
+              (form2 = '-1000px'),
+                (form3 = '50%'),
+                (progress = '49.7%'),
+                (showForm2 = 'hidden'),
+                (showForm3 = 'visible')
+            "
             class="btn black_bg"
             id="next2"
             type="button"
@@ -81,11 +97,9 @@
           </button>
         </div>
       </form>
-      <!-- //////////////// -->
-      <!-- //////////////// -->
-      <!-- //////////////// -->
+      <!-- /////////////////////////// -->
 
-      <form :style="{ left: form3 }" id="form3">
+      <form :style="{ left: form3, visibility: showForm3 }" id="form3">
         <h3>{{ answers[2].c }}</h3>
         <div class="answer__container">
           <div>
@@ -132,7 +146,13 @@
 
         <div class="btn-box">
           <button
-            @click="(form2 = '50%'), (form3 = '1100px'), (progress = '33.7%')"
+            @click="
+              (form2 = '50%'),
+                (form3 = '1100px'),
+                (progress = '33.7%'),
+                (showForm2 = 'visible'),
+                (showForm3 = 'hidden')
+            "
             class="btn black_bg"
             id="back2"
             type="button"
@@ -140,7 +160,13 @@
             Back
           </button>
           <button
-            @click="(form3 = '-1000px'), (form4 = '50%'), (progress = '66.7%')"
+            @click="
+              (form3 = '-1000px'),
+                (form4 = '50%'),
+                (progress = '66.7%'),
+                (showForm3 = 'hidden'),
+                (showForm4 = 'visible')
+            "
             class="btn black_bg"
             id="next3"
             type="button"
@@ -153,10 +179,12 @@
       </form>
 
       <!-- ///////////////////////////// -->
-      <!-- ///////////////////////////// -->
-      <!-- ///////////////////////////// -->
 
-      <form :style="{ left: form4 }" id="form4">
+      <form
+        :style="{ left: form4, visibility: showForm4 }"
+        id="form4"
+        @submit.prevent
+      >
         <h3>{{ answers[3].d }}</h3>
         <div class="answer__container">
           <div class="inputText__container">
@@ -187,7 +215,13 @@
 
         <div class="btn-box">
           <button
-            @click="(form3 = '50%'), (form4 = '1100px'), (progress = '49.7%')"
+            @click="
+              (form3 = '50%'),
+                (form4 = '1100px'),
+                (progress = '49.7%'),
+                (showForm3 = 'visible'),
+                (showForm4 = 'hidden')
+            "
             class="btn black_bg"
             id="back3"
             type="button"
@@ -195,7 +229,13 @@
             Back
           </button>
           <button
-            @click="(form4 = '-1000px'), (form5 = '50%'), (progress = '83.7%')"
+            @click="
+              (form4 = '-1000px'),
+                (form5 = '50%'),
+                (progress = '83.7%'),
+                (showForm4 = 'hidden'),
+                (showForm5 = 'visible')
+            "
             class="btn black_bg"
             id="next4"
             type="button"
@@ -207,10 +247,8 @@
         </div>
       </form>
       <!-- //////////////////////////// -->
-      <!-- //////////////////////////// -->
-      <!-- //////////////////////////// -->
 
-      <form :style="{ left: form5 }" id="form5">
+      <form :style="{ left: form5, visibility: showForm5 }" id="form5">
         <h3>{{ answers[4].e }}</h3>
         <div class="answer__container">
           <div>
@@ -225,7 +263,13 @@
 
         <div class="btn-box">
           <button
-            @click="(form4 = '50%'), (form5 = '1100px'), (progress = '66.7%')"
+            @click="
+              (form4 = '50%'),
+                (form5 = '1100px'),
+                (progress = '66.7%'),
+                (showForm4 = 'visible'),
+                (showForm5 = 'hidden')
+            "
             class="btn black_bg"
             id="back4"
             type="button"
@@ -233,7 +277,13 @@
             Back
           </button>
           <button
-            @click="(form5 = '-1000px'), (form6 = '50%'), (progress = '100.7%')"
+            @click="
+              (form5 = '-1000px'),
+                (form6 = '50%'),
+                (progress = '100.7%'),
+                (showForm5 = 'hidden'),
+                (showForm6 = 'visible')
+            "
             class="btn black_bg"
             id="next5"
             type="button"
@@ -245,41 +295,53 @@
         </div>
       </form>
       <!-- //////////////////////////// -->
-      <!-- //////////////////////////// -->
-      <!-- //////////////////////////// -->
 
-      <form :style="{ left: form6 }" id="form6">
+      <form :style="{ left: form6, visibility: showForm6 }" id="form6">
         <h3>{{ answers[5].f }}</h3>
         <div class="answer__container">
           <input
             type="text"
-            value="B2B"
-            v-model="answers[5].f_namn"
-            placeholder="Förnamn"
+            v-model="answers[5].namn"
+            placeholder="Namn"
+            minlength="3"
+            :style="invalidName && invalid"
           />
+          <p v-if="invalidName" style="color: red">Invalid name</p>
+
           <input
             type="text"
-            value="B2C"
-            v-model="answers[5].e_namn"
-            placeholder="Efternamn"
+            v-model="answers[5].foretagsnamn"
+            placeholder="Företagsnamn"
+            minlength="2"
           />
+
           <input
             type="text"
-            value="B2C"
             v-model="answers[5].tel"
             placeholder="Telefon"
+            minlength="3"
+            :style="invalidPhoneNum && invalid"
           />
+          <p v-if="invalidPhoneNum" style="color: red">Invalid phone number</p>
+
           <input
             type="text"
-            value="B2C"
             v-model="answers[5].email"
             placeholder="E-mail"
+            :style="invalidEmail && invalid"
           />
+          <p v-if="invalidEmail" style="color: red">Invalid email</p>
         </div>
 
         <div class="btn-box">
           <button
-            @click="(form5 = '50%'), (form6 = '1100px'), (progress = '83.7%')"
+            @click="
+              (form5 = '50%'),
+                (form6 = '1100px'),
+                (progress = '83.7%'),
+                (showForm5 = 'visible'),
+                (showForm6 = 'hidden')
+            "
             class="btn black_bg"
             id="back5"
             type="button"
@@ -290,7 +352,7 @@
             class="btn black_bg"
             id="next6"
             type="submit"
-            :disabled="true"
+            :disabled="disableSubmitBtn"
             :style="disableSubmitBtn && disabled"
             @click.prevent="sendData"
           >
@@ -298,9 +360,6 @@
           </button>
         </div>
       </form>
-    </div>
-    <div v-for="answer in answers" :key="answer.id">
-      <p>{{ answer }}</p>
     </div>
   </div>
 </template>
@@ -343,8 +402,8 @@ export default {
 
         {
           f: "Kontakt uppgifter?",
-          f_namn: null,
-          e_namn: null,
+          namn: null,
+          foretagsnamn: null,
           tel: null,
           email: null,
         },
@@ -358,6 +417,22 @@ export default {
       form6: "",
       progress: "",
 
+      // Visibility: hidden; for element!, when i click then show the element
+      showForm1: "visible",
+      showForm2: "hidden",
+      showForm3: "hidden",
+      showForm4: "hidden",
+      showForm5: "hidden",
+      showForm6: "hidden",
+
+      // validation var for styling input field  (true/false)
+      invalidEmail: false,
+      invalidName: false,
+      invalidPhoneNum: false,
+
+      // Styling for invalid input
+      invalid: { border: "1px solid red" },
+
       // When btn is disabled
       disableInputText: false,
       disableSubmitBtn: false,
@@ -366,6 +441,14 @@ export default {
         cursor: "context-menu",
       },
     };
+  },
+
+  mounted() {
+    this.disableSubmit();
+  },
+
+  updated() {
+    this.disableSubmit();
   },
 
   methods: {
@@ -377,48 +460,62 @@ export default {
       }
     },
 
-    // disableSubmit: function () {
-    //   const fNamn = this.answers[5].f_namn;
-    //   const eNamn = this.answers[5].e_namn;
-    //   const tel = this.answers[5].tel;
-    //   const email = this.answers[5].email;
+    disableSubmit: function () {
+      const namn = this.answers[5].namn;
+      const foretagsnamn = this.answers[5].foretagsnamn;
+      const tel = this.answers[5].tel;
+      const email = this.answers[5].email;
 
-    //   if (
-    //     fNamn === null ||
-    //     fNamn === "" ||
-    //     fNamn.length < 3 ||
-    //     eNamn === null ||
-    //     eNamn === "" ||
-    //     eNamn.length < 3 ||
-    //     tel === null ||
-    //     tel === "" ||
-    //     tel.length < 3 ||
-    //     email === null ||
-    //     email === "" ||
-    //     email.length < 3
-    //   ) {
-    //     this.disableSubmitBtn = true;
-    //   } else {
-    //     this.disableSubmitBtn = false;
-    //   }
-    // },
+      if (
+        namn === null ||
+        namn === "" ||
+        namn.length < 3 ||
+        foretagsnamn === null ||
+        foretagsnamn === "" ||
+        foretagsnamn.length < 3 ||
+        tel === null ||
+        tel === "" ||
+        tel.length < 3 ||
+        email === null ||
+        email === "" ||
+        email.length < 3
+      ) {
+        this.disableSubmitBtn = true;
+        console.log("input empty");
+      } else {
+        this.disableSubmitBtn = false;
+        console.log("input is not empty");
+      }
+    },
 
     sendData: function () {
       const answer = this.answers[5];
-      if (
-        answer.f_namn ||
-        answer.e_namn ||
-        answer.tel ||
-        answer.email === null
-      ) {
-        console.log("hej");
+      let validEmail = /^([A-Z\d.-]+)@([A-Z\d-]+)\.([A-Z]{2,8})(\.[A-Z]{2,8})?$/i.test(
+        answer.email
+      );
+
+      let validPhoneNumber = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/i.test(
+        answer.tel
+      );
+
+      let validName = /^([a-zA-Z ]){2,30}$/i.test(answer.namn);
+
+      this.invalidEmail = false;
+      this.invalidName = false;
+      this.invalidPhoneNum = false;
+
+      if (validEmail && validPhoneNumber && validName) {
+        axios
+          .post("http://jsonplaceholder.typicode.com/posts", {
+            body: this.answers,
+          })
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
+      } else {
+        if (!validEmail) this.invalidEmail = true;
+        if (!validName) this.invalidName = true;
+        if (!validPhoneNumber) this.invalidPhoneNum = true;
       }
-      axios
-        .post("http://jsonplaceholder.typicode.com/posts", {
-          body: this.answers,
-        })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
     },
   },
 };
@@ -443,7 +540,6 @@ export default {
     color: #777;
     font-size: 20px;
     line-height: 20px;
-    // padding-top: 20px;
   }
 
   #form6 input {
@@ -452,7 +548,6 @@ export default {
   }
 
   form {
-    // width: 700px;
     overflow-y: auto;
     width: 75%;
     margin: 0 auto;
@@ -464,13 +559,11 @@ export default {
     transform: translate(-50%, -50%);
     transition: 0.5s ease;
     overflow-y: auto;
-    // border: 1px solid blue;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .answer__container {
-      // border: 1px solid red;
       width: 50%;
       text-align: center;
 
@@ -481,16 +574,12 @@ export default {
 
       div {
         border-bottom: 1px solid;
-        // border: 1px solid red;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         padding: 10px 0;
-        // padding: 10px;
-        // border: 1px solid blue;
 
         label {
-          // border: 1px solid;
           flex: 0.5;
         }
       }
@@ -505,46 +594,32 @@ export default {
           transform: translateY(12px);
           border-bottom: 1px solid;
         }
-        // border: 1px solid green;
         display: flex;
         flex-direction: column;
-        // height: 100%;
 
         div {
           display: flex;
-          // border: 1px solid blue;
           width: 100%;
-          // padding: 10px 0;
 
           input[type="text"] {
-            // border: 1px solid red;
             font-size: 16px;
             transform: translateY(20px);
             width: 100%;
             padding: 10px 20px;
-            // border: 1px solid red;
           }
         }
       }
     }
 
     button {
-      // width: 110px;
-      // height: 35px;
-      // margin: 0 10px;
-      // border-radius: 30px;
-      // border: 1px solid red;
       margin: 5px;
       outline: none;
-      // color: #fff;
       cursor: pointer;
     }
 
     input {
-      // width: 100%;
       padding: 10px 5px;
       border: 0;
-      // border-bottom: 1px solid #999;
       outline: none;
       background: transparent;
 
@@ -569,28 +644,22 @@ export default {
   }
 
   .step-row {
-    // width: 360px;
-    // width: 700px;
     width: 100%;
-    // border: 1px solid red;
     height: 40px;
     margin: 0 auto;
     margin-bottom: 100px;
     display: flex;
-    // align-items: center;
     justify-content: flex-start;
     box-shadow: 0 -1px 5px -1px #000;
     position: relative;
 
     .step-col {
-      // width: 120px;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
       color: #333;
       position: relative;
-      // border: 1px solid green;
       font-size: 16px;
     }
 
@@ -599,10 +668,7 @@ export default {
       height: 100%;
       width: 16.7%;
       text-align: left;
-
-      // background: linear-gradient(to right, #ff105f, #ffad06);
       background: linear-gradient(to right, #df4276, #f58220);
-      // background-color: gray;
       transition: 1s ease;
 
       &::after {
