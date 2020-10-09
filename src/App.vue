@@ -23,7 +23,10 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-@import url("");
+@font-face {
+  font-family: font;
+  src: url("./fontFamily/dd249adc-d304-4402-a800-a60c0dd08605.woff2");
+}
 
 * {
   padding: 0;
@@ -40,7 +43,7 @@ h2,
 h3,
 h5 {
   font-weight: 400;
-  font-family: "DIN_1451 LT W04 Engschrift";
+  font-family: font;
 }
 
 h1 {
