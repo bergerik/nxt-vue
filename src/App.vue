@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+    <Banner />
     <Questions />
     <Footer />
   </div>
@@ -8,6 +9,7 @@
 
 <script>
 import Header from "./components/Header";
+import Banner from "./components/Banner";
 import Questions from "./components/Questions";
 import Footer from "./components/Footer";
 
@@ -15,6 +17,7 @@ export default {
   name: "App",
   components: {
     Header,
+    Banner,
     Questions,
     Footer,
   },
