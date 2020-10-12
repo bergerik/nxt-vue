@@ -297,6 +297,7 @@
       <!-- //////////////////////////// -->
 
       <form :style="{ left: form6, visibility: showForm6 }" id="form6">
+        <Check />
         <h3>{{ answers[5].f }}</h3>
         <div class="answer__container">
           <input
@@ -366,9 +367,13 @@
 
 <script>
 import axios from "axios";
+import Check from "./Check";
 
 export default {
   name: "Questions",
+  components: {
+    Check,
+  },
   data() {
     return {
       answers: [
