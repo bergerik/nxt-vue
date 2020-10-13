@@ -244,7 +244,8 @@
                 (form5 = '50%'),
                 (progress = '83.7%'),
                 (showForm4 = 'hidden'),
-                (showForm5 = 'visible')
+                (showForm5 = 'visible'),
+                answers[3].d_svar === 'nej' ? (answers[3].d_text = '') : null
             "
             class="btn black_bg"
             id="next4"
@@ -312,7 +313,7 @@
         <div class="answer__container">
           <input
             type="text"
-            v-model="answers[5].namn"
+            v-model="answers[5].f_namn"
             placeholder="Namn"
             minlength="3"
             :style="invalidName && invalid"
@@ -321,14 +322,14 @@
 
           <input
             type="text"
-            v-model="answers[5].foretagsnamn"
+            v-model="answers[5].f_foretagsnamn"
             placeholder="Företagsnamn"
             minlength="2"
           />
 
           <input
             type="text"
-            v-model="answers[5].tel"
+            v-model="answers[5].f_tel"
             placeholder="Telefon"
             minlength="3"
             :style="invalidPhoneNum && invalid"
@@ -337,7 +338,7 @@
 
           <input
             type="text"
-            v-model="answers[5].email"
+            v-model="answers[5].f_email"
             placeholder="E-mail"
             :style="invalidEmail && invalid"
           />
@@ -417,10 +418,10 @@ export default {
 
         {
           f: "Kontakt uppgifter?",
-          namn: null,
-          foretagsnamn: null,
-          tel: null,
-          email: null,
+          f_namn: null,
+          f_foretagsnamn: null,
+          f_tel: null,
+          f_email: null,
         },
       ],
 
@@ -476,10 +477,10 @@ export default {
     },
 
     disableSubmit: function () {
-      const namn = this.answers[5].namn;
-      const foretagsnamn = this.answers[5].foretagsnamn;
-      const tel = this.answers[5].tel;
-      const email = this.answers[5].email;
+      const namn = this.answers[5].f_namn;
+      const foretagsnamn = this.answers[5].f_foretagsnamn;
+      const tel = this.answers[5].f_tel;
+      const email = this.answers[5].f_email;
 
       if (
         namn === null ||
@@ -506,14 +507,14 @@ export default {
     sendData: function () {
       const answer = this.answers[5];
       let validEmail = /^([A-Z\d.-]+)@([A-Z\d-]+)\.([A-Z]{2,8})(\.[A-Z]{2,8})?$/i.test(
-        answer.email
+        answer.f_email
       );
 
       let validPhoneNumber = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/i.test(
-        answer.tel
+        answer.f_tel
       );
 
-      let validName = /^([a-zA-Z ]){2,30}$/i.test(answer.namn);
+      let validName = /^([a-zA-Z ]){2,30}$/i.test(answer.f_namn);
 
       this.invalidEmail = false;
       this.invalidName = false;
@@ -521,9 +522,13 @@ export default {
 
       if (validEmail && validPhoneNumber && validName) {
         axios
-          .post("http://jsonplaceholder.typicode.com/posts", {
-            body: this.answers,
-          })
+          .post(
+            "http://localhost:80/ExaktaProjekt/nxt-vue/server/server.php",
+            {
+              body: this.answers,
+            },
+            { headers: { "Content-Type": "application/json" } }
+          )
           .then((res) => console.log(res))
           .catch((err) => console.log(err));
       } else {
