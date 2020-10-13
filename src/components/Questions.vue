@@ -1,8 +1,18 @@
 <template>
   <div class="question__container">
+    <div class="step-row">
+      <div :style="{ width: progress }" id="progress"></div>
+      <div class="step-col"><strong>Step 1</strong></div>
+      <div class="step-col"><strong>Step 2</strong></div>
+      <div class="step-col"><strong>Step 3</strong></div>
+      <div class="step-col"><strong>Step 4</strong></div>
+      <div class="step-col"><strong>Step 5</strong></div>
+      <div class="step-col"><strong>Step 6</strong></div>
+    </div>
+
     <div class="questions">
       <!-- Progress bar! -->
-      <div class="step-row">
+      <!-- <div class="step-row">
         <div :style="{ width: progress }" id="progress"></div>
         <div class="step-col"><strong>Step 1</strong></div>
         <div class="step-col"><strong>Step 2</strong></div>
@@ -10,7 +20,7 @@
         <div class="step-col"><strong>Step 4</strong></div>
         <div class="step-col"><strong>Step 5</strong></div>
         <div class="step-col"><strong>Step 6</strong></div>
-      </div>
+      </div> -->
 
       <form :style="{ left: form1, visibility: showForm1 }" id="form1">
         <div>
@@ -527,132 +537,198 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.questions {
-  margin: 0;
-  padding: 0;
-  max-width: 800px;
-  border: 1px solid;
-  height: 500px;
-  margin: 8% auto;
-  background-color: #fff;
-  border-radius: 5px;
-  position: relative;
+.question__container {
+  border: 1px solid blue;
   overflow: hidden;
 
-  h3 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #777;
-    font-size: 20px;
-    line-height: 20px;
-  }
-
-  #form6 input {
-    border-bottom: 1px solid;
-    padding: 15px;
-  }
-
-  form {
-    overflow-y: auto;
-    width: 75%;
+  .questions {
+    margin: 0;
+    padding: 0;
+    max-width: 800px;
+    border: 1px solid red;
+    height: 500px;
     margin: 0 auto;
-    height: 420px;
-    padding: 10px;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: 0.5s ease;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
 
-    .answer__container {
-      width: 50%;
+    label {
+      font-size: 25px;
+    }
+
+    h3 {
       text-align: center;
+      margin-bottom: 40px;
+      color: #777;
+      font-size: 40px;
+      line-height: 40px;
+    }
 
-      input[type="text"] {
-        width: 100%;
-        padding: 10px;
+    #form6 input {
+      // border-bottom: 1px solid;
+      padding: 19px;
+      font-size: 18px;
+    }
+
+    form {
+      overflow-y: auto;
+      width: 75%;
+      margin: 0 auto;
+      height: 420px;
+      padding: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &::-webkit-scrollbar {
+        background-color: #fff;
       }
 
-      div {
-        border-bottom: 1px solid;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        padding: 10px 0;
+      .answer__container {
+        width: 50%;
+        text-align: center;
 
-        label {
-          flex: 0.5;
+        input[type="text"] {
+          width: 100%;
+          padding: 10px;
         }
-      }
-
-      .inputText__container {
-        .step4__ja,
-        .step4__input,
-        .step4__nej {
-          border: none;
-        }
-        .step4__ja {
-          transform: translateY(12px);
-          border-bottom: 1px solid;
-        }
-        display: flex;
-        flex-direction: column;
 
         div {
+          // border-bottom: 1px solid;
           display: flex;
-          width: 100%;
+          justify-content: space-evenly;
+          align-items: center;
+          padding: 15px 0;
 
-          input[type="text"] {
-            font-size: 16px;
-            transform: translateY(20px);
+          label {
+            flex: 0.5;
+          }
+        }
+
+        .inputText__container {
+          .step4__ja,
+          .step4__input,
+          .step4__nej {
+            border: none;
+          }
+          .step4__ja {
+            transform: translateY(12px);
+            // border-bottom: 1px solid;
+          }
+          display: flex;
+          flex-direction: column;
+
+          div {
+            display: flex;
             width: 100%;
-            padding: 10px 20px;
+
+            input[type="text"] {
+              font-size: 18px;
+              transform: translateY(20px);
+              width: 100%;
+              padding: 10px 20px;
+            }
           }
         }
       }
-    }
 
-    button {
-      margin: 5px;
-      outline: none;
-      cursor: pointer;
-    }
+      button {
+        margin: 5px;
+        outline: none;
+        cursor: pointer;
+      }
 
-    input {
-      padding: 10px 5px;
-      border: 0;
-      outline: none;
-      background: transparent;
+      input {
+        padding: 10px 5px;
+        border: 0;
+        outline: none;
+        background: transparent;
 
-      ::placeholder {
-        color: #777;
+        ::placeholder {
+          color: #777;
+        }
+      }
+
+      .btn-box {
+        width: 100%;
+        margin: 30px auto;
+        text-align: center;
       }
     }
 
-    .btn-box {
-      width: 100%;
-      margin: 30px auto;
-      text-align: center;
+    #form2,
+    #form3,
+    #form4,
+    #form5,
+    #form6 {
+      left: 1100px;
     }
-  }
 
-  #form2,
-  #form3,
-  #form4,
-  #form5,
-  #form6 {
-    left: 1100px;
+    // .step-row {
+    //   width: 100%;
+    //   height: 40px;
+    //   margin: 0 auto;
+    //   margin-bottom: 100px;
+    //   display: flex;
+    //   justify-content: flex-start;
+    //   box-shadow: 0 -1px 5px -1px #000;
+    //   position: relative;
+
+    //   .step-col {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     width: 100%;
+    //     color: #333;
+    //     position: relative;
+    //     font-size: 16px;
+    //   }
+
+    //   #progress {
+    //     position: absolute;
+    //     height: 100%;
+    //     width: 16.7%;
+    //     text-align: left;
+    //     background: linear-gradient(to right, #df4276, #f58220);
+    //     transition: 1s ease;
+
+    //     &::after {
+    //       content: "";
+    //       height: 0;
+    //       width: 0;
+    //       border-top: 20px solid transparent;
+    //       border-bottom: 20px solid transparent;
+    //       position: absolute;
+    //       right: -20px;
+    //       top: 0;
+    //       border-left: 20px solid #f58220;
+    //     }
+    //   }
+    // }
+
+    @media (max-width: 370px) {
+      .btn {
+        font-size: 12px;
+        padding: 10px 25px;
+      }
+
+      ::placeholder {
+        font-size: 12px;
+      }
+    }
   }
 
   .step-row {
     width: 100%;
-    height: 40px;
+    height: 70px;
     margin: 0 auto;
-    margin-bottom: 100px;
+    // margin-bottom: 100px;
     display: flex;
     justify-content: flex-start;
     box-shadow: 0 -1px 5px -1px #000;
@@ -665,7 +741,7 @@ export default {
       width: 100%;
       color: #333;
       position: relative;
-      font-size: 16px;
+      font-size: 25px;
     }
 
     #progress {
@@ -680,24 +756,13 @@ export default {
         content: "";
         height: 0;
         width: 0;
-        border-top: 20px solid transparent;
-        border-bottom: 20px solid transparent;
+        border-top: 35px solid transparent;
+        border-bottom: 35px solid transparent;
         position: absolute;
-        right: -20px;
+        right: -25px;
         top: 0;
-        border-left: 20px solid #f58220;
+        border-left: 25px solid #f58220;
       }
-    }
-  }
-
-  @media (max-width: 370px) {
-    .btn {
-      font-size: 12px;
-      padding: 10px 25px;
-    }
-
-    ::placeholder {
-      font-size: 12px;
     }
   }
 }

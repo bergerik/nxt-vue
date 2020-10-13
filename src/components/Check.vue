@@ -26,7 +26,7 @@ export default {
     color: rgb(2, 54, 2);
     margin: 0;
     padding: 0;
-    font-size: 22px;
+    font-size: 30px;
     transform: translateY(-10px);
   }
 

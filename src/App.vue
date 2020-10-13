@@ -44,7 +44,10 @@ hr {
 h1,
 h2,
 h3,
-h5 {
+h5,
+p,
+label,
+strong {
   font-weight: 400;
   font-family: font;
 }
