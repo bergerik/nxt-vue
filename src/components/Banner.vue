@@ -27,4 +27,16 @@ div {
     line-height: 1.1;
   }
 }
+
+@media (max-width: 480px) {
+  div {
+    height: 180px;
+  }
+}
+
+@media (max-width: 320px) {
+  div {
+    height: 150px;
+  }
+}
 </style>

@@ -217,7 +217,6 @@
             />
           </div>
         </div>
-
         <div class="btn-box">
           <button
             @click="
@@ -652,7 +651,8 @@ export default {
   .questions {
     padding: 0;
     max-width: 800px;
-    height: 500px;
+    height: 600px;
+    border: 1px solid blue;
     margin: 10px auto;
     background-color: #fff;
     border-radius: 5px;
@@ -673,21 +673,40 @@ export default {
 
     #form6 {
       border: 1px solid red;
+      height: 100%;
       input {
         padding: 19px;
         font-size: 18px;
       }
       .answer__container {
         border: 1px solid blue;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
         width: 100%;
+        height: 100%;
+
+        input {
+          border: 1px solid red;
+        }
+      }
+    }
+
+    #form3 {
+      .answer__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
       }
     }
 
     form {
+      // border: 1px solid red;
       overflow-y: auto;
       width: 75%;
       margin: 0 auto;
-      height: 420px;
+      height: 500px;
+      // height: 100%;
       padding: 10px;
       position: absolute;
       top: 50%;
@@ -699,12 +718,18 @@ export default {
       align-items: center;
 
       &::-webkit-scrollbar {
-        background-color: #fff;
+        // background-color: #fff;
       }
 
       .answer__container {
-        width: 50%;
+        border: 1px solid green;
+        width: 70%;
+        height: 300px;
+        overflow-y: auto;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         input[type="text"] {
           width: 100%;
@@ -712,10 +737,12 @@ export default {
         }
 
         div {
+          border: 1px solid;
           display: flex;
           justify-content: space-evenly;
           align-items: center;
-          padding: 15px 0;
+          padding: 12px 0;
+          margin-top: 30px;
 
           label {
             flex: 0.5;
@@ -735,6 +762,7 @@ export default {
           flex-direction: column;
 
           div {
+            margin-top: 0;
             display: flex;
             width: 100%;
 
@@ -767,8 +795,12 @@ export default {
 
       .btn-box {
         width: 100%;
-        margin: 30px auto;
+        // margin: 30px auto;
+        margin-top: 10px;
         text-align: center;
+        // border: 1px solid;
+        // position: sticky;
+        // bottom: 0;
       }
     }
 

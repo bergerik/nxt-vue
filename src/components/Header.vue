@@ -86,7 +86,7 @@ header {
     }
 
     img {
-      width: 90px;
+      width: 75px;
     }
   }
 }
