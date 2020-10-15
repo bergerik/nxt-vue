@@ -11,17 +11,6 @@
     </div>
 
     <div class="questions">
-      <!-- Progress bar! -->
-      <!-- <div class="step-row">
-        <div :style="{ width: progress }" id="progress"></div>
-        <div class="step-col"><strong>Step 1</strong></div>
-        <div class="step-col"><strong>Step 2</strong></div>
-        <div class="step-col"><strong>Step 3</strong></div>
-        <div class="step-col"><strong>Step 4</strong></div>
-        <div class="step-col"><strong>Step 5</strong></div>
-        <div class="step-col"><strong>Step 6</strong></div>
-      </div> -->
-
       <form :style="{ left: form1, visibility: showForm1 }" id="form1">
         <div>
           <h3>{{ answers[0].a }}</h3>
@@ -523,20 +512,32 @@ export default {
       if (validEmail && validPhoneNumber && validName) {
         axios
           .post(
-            "http://localhost:80/ExaktaProjekt/nxt-vue/server/server.php",
+            "https://jsonplaceholder.typicode.com/posts",
             {
               body: this.answers,
             },
             { headers: { "Content-Type": "application/json" } }
           )
-          .then((res) => console.log(res))
+          .then((res) => {
+            console.log(res);
+            this.$swal({
+              icon: "success",
+              title: "Svin Bra!",
+              text: "Dina uppgifter har blivit skickade",
+              confirmButtonText: "Fortsätt",
+            }).then(() => {
+              window.location.replace("https://nxte.se/");
+            });
+          })
           .catch((err) => {
             console.log(err);
             this.$swal({
               icon: "error",
-              title: "Oops...",
-              text: "Something went wrong!",
-              footer: "<a href>Why do I have this issue?</a>",
+              title: "Oj då!",
+              text: "Något gick fel :(",
+              type: "warning",
+              confirmButtonText: "Försök igen",
+              showCloseButton: true,
             });
           });
       } else {
@@ -578,7 +579,6 @@ export default {
     }
 
     #form6 input {
-      // border-bottom: 1px solid;
       padding: 19px;
       font-size: 18px;
     }
@@ -612,7 +612,6 @@ export default {
         }
 
         div {
-          // border-bottom: 1px solid;
           display: flex;
           justify-content: space-evenly;
           align-items: center;
@@ -631,7 +630,6 @@ export default {
           }
           .step4__ja {
             transform: translateY(12px);
-            // border-bottom: 1px solid;
           }
           display: flex;
           flex-direction: column;
@@ -698,7 +696,6 @@ export default {
     width: 100%;
     height: 70px;
     margin: 0 auto;
-    // margin-bottom: 100px;
     display: flex;
     justify-content: flex-start;
     box-shadow: 0 -1px 5px -1px #000;
