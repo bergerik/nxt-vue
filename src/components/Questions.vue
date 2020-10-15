@@ -17,12 +17,22 @@
         </div>
         <div class="answer__container">
           <div>
-            <label>Ja</label>
-            <input type="radio" value="ja" v-model="answers[0].a_svar" />
+            <label for="ja">Ja</label>
+            <input
+              id="ja"
+              type="radio"
+              value="ja"
+              v-model="answers[0].a_svar"
+            />
           </div>
           <div>
-            <label>Nej</label>
-            <input type="radio" value="nej" v-model="answers[0].a_svar" />
+            <label for="nej">Nej</label>
+            <input
+              id="nej"
+              type="radio"
+              value="nej"
+              v-model="answers[0].a_svar"
+            />
           </div>
         </div>
 
@@ -50,16 +60,31 @@
         <h3>{{ answers[1].b }}</h3>
         <div class="answer__container">
           <div>
-            <label>B2B</label>
-            <input type="radio" value="B2B" v-model="answers[1].b_svar" />
+            <label for="B2B">B2B</label>
+            <input
+              id="B2B"
+              type="radio"
+              value="B2B"
+              v-model="answers[1].b_svar"
+            />
           </div>
           <div>
-            <label>B2C</label>
-            <input type="radio" value="B2C" v-model="answers[1].b_svar" />
+            <label for="B2C">B2C</label>
+            <input
+              id="B2C"
+              type="radio"
+              value="B2C"
+              v-model="answers[1].b_svar"
+            />
           </div>
           <div>
-            <label>B2B & B2C</label>
-            <input type="radio" value="B2B & B2C" v-model="answers[1].b_svar" />
+            <label for="B2B & B2C">B2B & B2C</label>
+            <input
+              id="B2B & B2C"
+              type="radio"
+              value="B2B & B2C"
+              v-model="answers[1].b_svar"
+            />
           </div>
         </div>
 
@@ -102,44 +127,94 @@
         <h3>{{ answers[2].c }}</h3>
         <div class="answer__container">
           <div>
-            <label>exempel 1</label>
-            <input type="radio" value="ex1" v-model="answers[2].c_svar" />
+            <label for="1">exempel 1</label>
+            <input
+              id="1"
+              type="radio"
+              value="ex1"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 2</label>
-            <input type="radio" value="ex2" v-model="answers[2].c_svar" />
+            <label for="2">exempel 2</label>
+            <input
+              id="2"
+              type="radio"
+              value="ex2"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 3</label>
-            <input type="radio" value="ex3" v-model="answers[2].c_svar" />
+            <label for="3">exempel 3</label>
+            <input
+              id="3"
+              type="radio"
+              value="ex3"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 4</label>
-            <input type="radio" value="ex4" v-model="answers[2].c_svar" />
+            <label for="4">exempel 4</label>
+            <input
+              id="4"
+              type="radio"
+              value="ex4"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 5</label>
-            <input type="radio" value="ex5" v-model="answers[2].c_svar" />
+            <label for="5">exempel 5</label>
+            <input
+              id="5"
+              type="radio"
+              value="ex5"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 6</label>
-            <input type="radio" value="ex6" v-model="answers[2].c_svar" />
+            <label for="6">exempel 6</label>
+            <input
+              id="6"
+              type="radio"
+              value="ex6"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 7</label>
-            <input type="radio" value="ex7" v-model="answers[2].c_svar" />
+            <label for="7">exempel 7</label>
+            <input
+              id="7"
+              type="radio"
+              value="ex7"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 8</label>
-            <input type="radio" value="ex8" v-model="answers[2].c_svar" />
+            <label for="8">exempel 8</label>
+            <input
+              id="8"
+              type="radio"
+              value="ex8"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 9</label>
-            <input type="radio" value="ex9" v-model="answers[2].c_svar" />
+            <label for="9">exempel 9</label>
+            <input
+              id="9"
+              type="radio"
+              value="ex9"
+              v-model="answers[2].c_svar"
+            />
           </div>
           <div>
-            <label>exempel 10</label>
-            <input type="radio" value="ex10" v-model="answers[2].c_svar" />
+            <label for="10">exempel 10</label>
+            <input
+              id="10"
+              type="radio"
+              value="ex10"
+              v-model="answers[2].c_svar"
+            />
           </div>
         </div>
 
@@ -188,8 +263,13 @@
         <div class="answer__container">
           <div class="inputText__container">
             <div class="step4__ja">
-              <label>Ja</label>
-              <input type="radio" value="ja" v-model="answers[3].d_svar" />
+              <label for="jaa">Ja</label>
+              <input
+                id="jaa"
+                type="radio"
+                value="ja"
+                v-model="answers[3].d_svar"
+              />
             </div>
             <div
               class="step4__input"
@@ -207,8 +287,13 @@
             </div>
           </div>
           <div class="step4__nej">
-            <label>Nej</label>
-            <input type="radio" value="nej" v-model="answers[3].d_svar" />
+            <label for="neej">Nej</label>
+            <input
+              id="neej"
+              type="radio"
+              value="nej"
+              v-model="answers[3].d_svar"
+            />
           </div>
         </div>
 
@@ -252,12 +337,22 @@
         <h3>{{ answers[4].e }}</h3>
         <div class="answer__container">
           <div>
-            <label>B2B</label>
-            <input type="radio" value="B2B" v-model="answers[4].e_svar" />
+            <label for="b2b">B2B</label>
+            <input
+              id="b2b"
+              type="radio"
+              value="B2B"
+              v-model="answers[4].e_svar"
+            />
           </div>
           <div>
-            <label>B2C</label>
-            <input type="radio" value="B2C" v-model="answers[4].e_svar" />
+            <label for="b2c">B2C</label>
+            <input
+              id="b2c"
+              type="radio"
+              value="B2C"
+              v-model="answers[4].e_svar"
+            />
           </div>
         </div>
 
@@ -576,9 +671,16 @@ export default {
       line-height: 40px;
     }
 
-    #form6 input {
-      padding: 19px;
-      font-size: 18px;
+    #form6 {
+      border: 1px solid red;
+      input {
+        padding: 19px;
+        font-size: 18px;
+      }
+      .answer__container {
+        border: 1px solid blue;
+        width: 100%;
+      }
     }
 
     form {
@@ -742,6 +844,10 @@ export default {
         font-size: 22px;
       }
     }
+
+    #form6 {
+      width: 95%;
+    }
   }
 
   @media (max-width: 426px) {
@@ -766,6 +872,11 @@ export default {
         font-size: 22px;
         line-height: 22px;
       }
+    }
+
+    #form6 input {
+      padding: 10px !important;
+      font-size: 16px !important;
     }
   }
 
