@@ -96,7 +96,7 @@
           </button>
         </div>
       </form>
-      <!-- /////////////////////////// -->
+      <!-- //////////////////////////////////// -->
 
       <form :style="{ left: form3, visibility: showForm3 }" id="form3">
         <h3>{{ answers[2].c }}</h3>
@@ -177,7 +177,7 @@
         </div>
       </form>
 
-      <!-- ///////////////////////////// -->
+      <!-- //////////////////////////////////// -->
 
       <form
         :style="{ left: form4, visibility: showForm4 }"
@@ -246,7 +246,7 @@
           </button>
         </div>
       </form>
-      <!-- //////////////////////////// -->
+      <!-- //////////////////////////////////// -->
 
       <form :style="{ left: form5, visibility: showForm5 }" id="form5">
         <h3>{{ answers[4].e }}</h3>
@@ -294,7 +294,7 @@
           </button>
         </div>
       </form>
-      <!-- //////////////////////////// -->
+      <!-- //////////////////////////////////// -->
 
       <form :style="{ left: form6, visibility: showForm6 }" id="form6">
         <Check />
@@ -552,15 +552,13 @@ export default {
 
 <style lang="scss" scoped>
 .question__container {
-  border: 1px solid blue;
   overflow: hidden;
 
   .questions {
-    margin: 0;
     padding: 0;
     max-width: 800px;
     height: 500px;
-    margin: 0 auto;
+    margin: 10px auto;
     background-color: #fff;
     border-radius: 5px;
     position: relative;
@@ -729,6 +727,56 @@ export default {
         right: -25px;
         top: 0;
         border-left: 25px solid #f58220;
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    .questions {
+      h3 {
+        font-size: 30px;
+        line-height: 30px;
+      }
+
+      label {
+        font-size: 22px;
+      }
+    }
+  }
+
+  @media (max-width: 426px) {
+    .answer__container {
+      div {
+        justify-content: space-between !important;
+      }
+
+      label {
+        flex: 0.8 !important;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    strong {
+      font-size: 20px;
+    }
+
+    .questions {
+      h3 {
+        font-size: 22px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  @media (max-width: 300px) {
+    strong {
+      font-size: 16px;
+    }
+
+    .questions {
+      label {
+        font-size: 18px;
       }
     }
   }

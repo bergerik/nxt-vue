@@ -90,7 +90,6 @@ a:hover {
 
 .btn {
   padding: 17px 35px;
-  /* border: 1px solid; */
   border-radius: 25px;
   background-color: #f58220;
   color: #ffffff;

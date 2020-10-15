@@ -84,6 +84,10 @@ header {
       padding: 5px 8px;
       font-size: 12px;
     }
+
+    img {
+      width: 90px;
+    }
   }
 }
 </style>
