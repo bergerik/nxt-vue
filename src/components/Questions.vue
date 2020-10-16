@@ -523,9 +523,6 @@ export default {
         },
       ],
 
-      // Current url
-      currentUrl: "http://localhost:8080/",
-
       form1: "",
       form2: "",
       form3: "",
