@@ -21,6 +21,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1 0 auto;
 
   h5 {
     color: rgb(2, 54, 2);
