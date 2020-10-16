@@ -15,7 +15,10 @@
             <p>281 33 Hässleholm</p>
           </div>
           <div class="btn__container">
-            <a href="https://nxte.se/kontakt" class="btn white_bg"
+            <a
+              href="https://nxte.se/kontakt"
+              class="btn white_bg"
+              @click="clearRadioBtns"
               >Kontakta oss</a
             >
           </div>
@@ -25,35 +28,70 @@
 
         <div class="box2">
           <div class="left">
-            <a class="h2__style" href="https://nxte.se/e-handelslosningar"
+            <a
+              class="h2__style"
+              href="https://nxte.se/e-handelslosningar"
+              @click="clearRadioBtns"
               >E-handelslösningar</a
             >
             <div>
-              <a href="https://nxte.se/b2b">B2B</a>
-              <a href="https://nxte.se/b2c">B2C</a>
-              <a href="https://nxte.se/b2b-b2c">B2B & B2C</a>
-              <a href="https://nxte.se/detta-ingar">Detta ingår</a>
+              <a href="https://nxte.se/b2b" @click="clearRadioBtns">B2B</a>
+              <a href="https://nxte.se/b2c" @click="clearRadioBtns">B2C</a>
+              <a href="https://nxte.se/b2b-b2c" @click="clearRadioBtns"
+                >B2B & B2C</a
+              >
+              <a href="https://nxte.se/detta-ingar" @click="clearRadioBtns"
+                >Detta ingår</a
+              >
             </div>
             <div>
-              <a class="h2__style" href="https://nxte.se/kunder">Kunder</a>
+              <a
+                class="h2__style"
+                href="https://nxte.se/kunder"
+                @click="clearRadioBtns"
+                >Kunder</a
+              >
             </div>
             <div>
-              <a class="h2__style" href="https://nxte.se/kontakt">Kontakt</a>
+              <a
+                class="h2__style"
+                href="https://nxte.se/kontakt"
+                @click="clearRadioBtns"
+                >Kontakt</a
+              >
               <a href="https://nxte.se/boka-demo">Boka demo</a>
             </div>
           </div>
 
           <div class="right">
-            <a class="h2__style" href="https://nxte.se/partners">Partners</a>
+            <a
+              class="h2__style"
+              href="https://nxte.se/partners"
+              @click="clearRadioBtns"
+              >Partners</a
+            >
             <div>
-              <a href="https://nxte.se/fraktsatt">Fraktsätt</a>
-              <a href="https://nxte.se/forsaljningskanaler"
+              <a href="https://nxte.se/fraktsatt" @click="clearRadioBtns"
+                >Fraktsätt</a
+              >
+              <a
+                href="https://nxte.se/forsaljningskanaler"
+                @click="clearRadioBtns"
                 >Försäljningskanaler</a
               >
-              <a href="https://nxte.se/betalsatt">Betalsätt</a>
-              <a href="https://nxte.se/affarsystem">Affärsystem</a>
+              <a href="https://nxte.se/betalsatt" @click="clearRadioBtns"
+                >Betalsätt</a
+              >
+              <a href="https://nxte.se/affarsystem" @click="clearRadioBtns"
+                >Affärsystem</a
+              >
             </div>
-            <a class="h2__style m-top" href="https://nxte.se/om-oss">Om oss</a>
+            <a
+              class="h2__style m-top"
+              href="https://nxte.se/om-oss"
+              @click="clearRadioBtns"
+              >Om oss</a
+            >
             <!-- <div>
               <a href="https://nxte.se/betalsatt">Betalsätt</a>
               <a href="https://nxte.se/affarsystem">Affärssystem</a>
@@ -63,7 +101,10 @@
       </div>
 
       <hr />
-      <a class="copyright" href="https://www.exaktasoftware.se/"
+      <a
+        class="copyright"
+        href="https://www.exaktasoftware.se/"
+        @click="clearRadioBtns"
         >@ Copyright 2019 Exakta Software - En del av Exakta Group</a
       >
     </div>
@@ -75,6 +116,16 @@ export default {
   name: "Footer",
   data() {
     return {};
+  },
+
+  methods: {
+    clearRadioBtns() {
+      let radio = document.querySelectorAll('input[type="radio"]');
+
+      for (let allradioBtns of radio) {
+        allradioBtns.checked = false;
+      }
+    },
   },
 };
 </script>

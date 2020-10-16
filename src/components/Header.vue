@@ -13,7 +13,12 @@
         <li><a href="https://nxte.se/partners">Partners</a></li>
         <li><a href="https://nxte.se/kontakt">Kontakt</a></li> -->
         <li>
-          <a class="btn black_bg" href="https://nxte.se/boka-demo">Boka demo</a>
+          <a
+            href="https://nxte.se/boka-demo"
+            @click="clearRadioBtns"
+            class="btn black_bg"
+            >Boka demo</a
+          >
         </li>
       </ul>
     </nav>
@@ -25,6 +30,16 @@ export default {
   name: "Header",
   data() {
     return {};
+  },
+
+  methods: {
+    clearRadioBtns() {
+      let radio = document.querySelectorAll('input[type="radio"]');
+
+      for (let allradioBtns of radio) {
+        allradioBtns.checked = false;
+      }
+    },
   },
 };
 </script>

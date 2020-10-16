@@ -2,12 +2,6 @@
   <div class="question__container">
     <div class="step-row">
       <div :style="{ width: progress }" id="progress"></div>
-      <!-- <div class="step-col"><strong>Step 1</strong></div>
-      <div class="step-col"><strong>Step 2</strong></div>
-      <div class="step-col"><strong>Step 3</strong></div>
-      <div class="step-col"><strong>Step 4</strong></div>
-      <div class="step-col"><strong>Step 5</strong></div>
-      <div class="step-col"><strong>Step 6</strong></div> -->
       <div class="step-col">
         <strong>{{ step }}</strong>
       </div>
@@ -53,7 +47,7 @@
             "
             type="button"
           >
-            Next
+            Nästa
           </button>
         </div>
       </form>
@@ -104,7 +98,7 @@
             id="back1"
             type="button"
           >
-            Back
+            Tillbaka
           </button>
           <button
             @click="
@@ -120,7 +114,7 @@
             :disabled="answers[1].b_svar === null"
             :style="answers[1].b_svar === null && disabled"
           >
-            Next
+            Nästa
           </button>
         </div>
       </form>
@@ -233,7 +227,7 @@
             id="back2"
             type="button"
           >
-            Back
+            Tillbaka
           </button>
           <button
             @click="
@@ -249,7 +243,7 @@
             :disabled="answers[2].c_svar === null"
             :style="answers[2].c_svar === null && disabled"
           >
-            Next
+            Nästa
           </button>
         </div>
       </form>
@@ -312,7 +306,7 @@
             id="back3"
             type="button"
           >
-            Back
+            Tillbaka
           </button>
           <button
             @click="
@@ -329,7 +323,7 @@
             :disabled="answers[3].d_svar === null"
             :style="answers[3].d_svar === null && disabled"
           >
-            Next
+            Nästa
           </button>
         </div>
       </form>
@@ -371,7 +365,7 @@
             id="back4"
             type="button"
           >
-            Back
+            Tillbaka
           </button>
           <button
             @click="
@@ -387,7 +381,7 @@
             :disabled="answers[4].e_svar === null"
             :style="answers[4].e_svar === null && disabled"
           >
-            Next
+            Nästa
           </button>
         </div>
       </form>
@@ -444,7 +438,7 @@
             id="back5"
             type="button"
           >
-            Back
+            Tillbaka
           </button>
           <button
             class="btn black_bg"
@@ -454,7 +448,7 @@
             :style="disableSubmitBtn && disabled"
             @click.prevent="sendData"
           >
-            Submit
+            Slutför
           </button>
         </div>
       </form>
@@ -511,6 +505,9 @@ export default {
         },
       ],
 
+      // Current url
+      currentUrl: "http://localhost:8080/",
+
       form1: "",
       form2: "",
       form3: "",
@@ -554,7 +551,7 @@ export default {
 
   updated() {
     this.disableSubmit();
-    console.log(this.progress);
+
     if (this.progress === "16.7%") {
       this.step = "1/6";
     } else if (this.progress === "33.7%") {
@@ -600,10 +597,8 @@ export default {
         email.length < 3
       ) {
         this.disableSubmitBtn = true;
-        console.log("input empty");
       } else {
         this.disableSubmitBtn = false;
-        console.log("input is not empty");
       }
     },
 
@@ -660,6 +655,10 @@ export default {
         if (!validPhoneNumber) this.invalidPhoneNum = true;
       }
     },
+  },
+
+  destroyed() {
+    document.getElementById("ja").checked = false;
   },
 };
 </script>
