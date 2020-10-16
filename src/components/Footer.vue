@@ -59,7 +59,9 @@
                 @click="clearRadioBtns"
                 >Kontakt</a
               >
-              <a href="https://nxte.se/boka-demo">Boka demo</a>
+              <a href="https://nxte.se/boka-demo" @click="clearRadioBtns"
+                >Boka demo</a
+              >
             </div>
           </div>
 

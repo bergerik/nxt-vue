@@ -124,92 +124,101 @@
         <h3>{{ answers[2].c }}</h3>
         <div class="answer__container">
           <div>
-            <label for="1">exempel 1</label>
+            <label for="1">E-handel</label>
             <input
               id="1"
               type="radio"
-              value="ex1"
+              value="E-handel"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="2">exempel 2</label>
+            <label for="2">Serviceverksamheter och tjänster</label>
             <input
               id="2"
               type="radio"
-              value="ex2"
+              value="Serviceverksamheter och tjänster"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="3">exempel 3</label>
+            <label for="3">Kultur, nöje och fritid</label>
             <input
               id="3"
               type="radio"
-              value="ex3"
+              value="Kultur, nöje och fritid"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="4">exempel 4</label>
+            <label for="4">Butiksverksamhet</label>
             <input
               id="4"
               type="radio"
-              value="ex4"
+              value="Butiksverksamhet"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="5">exempel 5</label>
+            <label for="5">Fastighetsverksamhet</label>
             <input
               id="5"
               type="radio"
-              value="ex5"
+              value="Fastighetsverksamhet"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="6">exempel 6</label>
+            <label for="6">Kommunikation och marknadsföring</label>
             <input
               id="6"
               type="radio"
-              value="ex6"
+              value="Kommunikation och marknadsföring"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="7">exempel 7</label>
+            <label for="7">Jordbruk, skogsbruk och fiske</label>
             <input
               id="7"
               type="radio"
-              value="ex7"
+              value="Jordbruk, skogsbruk och fiske"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="8">exempel 8</label>
+            <label for="8">Energiförsörjning; miljöverksamhet</label>
             <input
               id="8"
               type="radio"
-              value="ex8"
+              value="Energiförsörjning; miljöverksamhet"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="9">exempel 9</label>
+            <label for="9">Tillverkning och utvinning</label>
             <input
               id="9"
               type="radio"
-              value="ex9"
+              value="Tillverkning och utvinning"
               v-model="answers[2].c_svar"
             />
           </div>
           <div>
-            <label for="10">exempel 10</label>
+            <label for="10">Byggverksamhet</label>
             <input
               id="10"
               type="radio"
-              value="ex10"
+              value="Byggverksamhet"
+              v-model="answers[2].c_svar"
+            />
+          </div>
+          <div>
+            <label for="11">Annat</label>
+            <input
+              id="11"
+              type="radio"
+              value="Annat"
               v-model="answers[2].c_svar"
             />
           </div>
@@ -333,20 +342,29 @@
         <h3>{{ answers[4].e }}</h3>
         <div class="answer__container">
           <div>
-            <label for="b2b">B2B</label>
+            <label for="nya">Nya kunder</label>
             <input
-              id="b2b"
+              id="nya"
               type="radio"
-              value="B2B"
+              value="Nya kunder"
               v-model="answers[4].e_svar"
             />
           </div>
           <div>
-            <label for="b2c">B2C</label>
+            <label for="befintliga">Befintliga kunder</label>
             <input
-              id="b2c"
+              id="befintliga"
               type="radio"
-              value="B2C"
+              value="Befintliga kunder"
+              v-model="answers[4].e_svar"
+            />
+          </div>
+          <div>
+            <label for="nya & befintliga">Nya & Befintliga kunder</label>
+            <input
+              id="nya & befintliga"
+              type="radio"
+              value="Nya & Befintliga"
               v-model="answers[4].e_svar"
             />
           </div>
@@ -486,7 +504,7 @@ export default {
         },
 
         {
-          d: "Använder ni något affärssystem? (Samma som ovan)",
+          d: "Använder ni något affärssystem?",
           d_svar: null,
           d_text: "",
         },
@@ -656,10 +674,6 @@ export default {
       }
     },
   },
-
-  destroyed() {
-    document.getElementById("ja").checked = false;
-  },
 };
 </script>
 
@@ -686,7 +700,7 @@ export default {
       margin-bottom: 40px;
       color: #777;
       font-size: 40px;
-      line-height: 40px;
+      line-height: 43px;
     }
 
     #form6 {
@@ -905,7 +919,7 @@ export default {
     .questions {
       h3 {
         font-size: 22px;
-        line-height: 22px;
+        line-height: 24px;
       }
     }
 
