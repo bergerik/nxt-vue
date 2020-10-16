@@ -693,6 +693,11 @@ export default {
 
     label {
       font-size: 25px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      cursor: pointer;
     }
 
     h3 {
