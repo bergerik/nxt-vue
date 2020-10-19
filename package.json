@@ -50,5 +50,6 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "proxy": "http://localhost/exaktaProjekt/nxt-vue/server"
 }

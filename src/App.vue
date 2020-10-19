@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import Header from "./components/Header";
 import Banner from "./components/Banner";
 import Questions from "./components/Questions";
