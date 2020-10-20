@@ -25,9 +25,10 @@
             v-for="(option, optionIndex) in question.options"
             :key="optionIndex"
           >
-            <label :for="'option-' + optionIndex">{{ option }}</label>
+            <p>{{ optionIndex }}</p>
+            <label :for="'option-' + optionIndex + index">{{ option }}</label>
             <input
-              :id="'option-' + optionIndex"
+              :id="'option-' + optionIndex + index"
               type="radio"
               v-bind:value="option"
               v-model="question.answer"
@@ -55,6 +56,69 @@
           >
             Nästa
           </button>
+        </div>
+      </form>
+
+      <form
+        :style="{
+          left: calculatedStepPosition(totalSteps),
+          visibility: currentStep == totalSteps ? 'visible' : 'hidden',
+        }"
+        id="form6"
+      >
+        <div>
+          <h3>Kontakt uppgifter</h3>
+        </div>
+        <div class="answer__container">
+          <div>
+            <input
+              type="text"
+              v-model="user.name"
+              placeholder="Namn"
+              minlength="3"
+              :style="invalidName && invalid"
+            />
+            <p v-if="invalidName" style="color: red">Invalid name</p>
+
+            <input
+              type="text"
+              v-model="user.company_name"
+              placeholder="Företagsnamn"
+              minlength="2"
+            />
+
+            <input
+              type="text"
+              v-model="user.phone"
+              placeholder="Telefon"
+              minlength="3"
+              :style="invalidPhoneNum && invalid"
+            />
+            <p v-if="invalidPhoneNum" style="color: red">
+              Invalid phone number
+            </p>
+
+            <input
+              type="text"
+              v-model="user.email"
+              placeholder="E-mail"
+              :style="invalidEmail && invalid"
+            />
+            <p v-if="invalidEmail" style="color: red">Invalid email</p>
+          </div>
+        </div>
+
+        <div class="btn-box">
+          <button
+            @click="goToPreviousStep"
+            class="btn black_bg"
+            id="back1"
+            type="button"
+            v-if="currentStep > 1"
+          >
+            Tillbaka
+          </button>
+          <button class="btn black_bg" type="button">Slutför</button>
         </div>
       </form>
 
@@ -141,12 +205,12 @@ export default {
       progress: "",
 
       // Visibility: hidden; for element!, when i click then show the element
-      showForm1: "visible",
-      showForm2: "hidden",
-      showForm3: "hidden",
-      showForm4: "hidden",
-      showForm5: "hidden",
-      showForm6: "hidden",
+      // showForm1: "visible",
+      // showForm2: "hidden",
+      // showForm3: "hidden",
+      // showForm4: "hidden",
+      // showForm5: "hidden",
+      // showForm6: "hidden",
 
       // validation var for styling input field  (true/false)
       invalidEmail: false,
@@ -154,7 +218,9 @@ export default {
       invalidPhoneNum: false,
 
       // Styling for invalid input
-      invalid: { border: "1px solid red" },
+      invalid: {
+        border: "1px solid red",
+      },
 
       // When btn is disabled
       disableInputText: false,
@@ -344,10 +410,12 @@ export default {
 
     #form6 {
       height: 100%;
+
       input {
         padding: 19px;
         font-size: 18px;
       }
+
       .answer__container {
         display: flex;
         flex-direction: column;
@@ -357,7 +425,7 @@ export default {
       }
     }
 
-    #form3 {
+    #form1 {
       .answer__container {
         display: flex;
         flex-direction: column;
@@ -419,9 +487,11 @@ export default {
           .step4__nej {
             border: none;
           }
+
           .step4__ja {
             transform: translateY(12px);
           }
+
           display: flex;
           flex-direction: column;
 
