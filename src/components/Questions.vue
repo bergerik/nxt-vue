@@ -14,7 +14,6 @@
           left: calculatedStepPosition(index + 1),
           visibility: currentStep == index + 1 ? 'visible' : 'hidden',
         }"
-        id="form1"
         :key="index"
       >
         <div>
@@ -52,7 +51,6 @@
           <button
             @click="goToPreviousStep"
             class="btn black_bg"
-            id="back1"
             type="button"
             v-if="currentStep > 1"
           >
@@ -61,8 +59,7 @@
           <button
             :disabled="!hasAnswer(question)"
             :class="[
-              'btn',
-              'black_bg',
+              'btn black_bg',
               { 'disabled-input': !hasAnswer(question) },
             ]"
             @click="goToNextStep()"
@@ -81,6 +78,7 @@
         }"
         id="form6"
       >
+        <Check />
         <div>
           <h3>Kontakt uppgifter</h3>
         </div>
@@ -127,18 +125,16 @@
           <button
             @click="goToPreviousStep"
             class="btn black_bg"
-            id="back1"
             type="button"
             v-if="currentStep > 1"
           >
             Tillbaka
           </button>
-          <!-- :style="disableSubmitBtn && disabled" -->
           <button
-            type="button"
-            :disabled="disableSubmit"
-            :class="['btn', 'black_bg', { 'disabled-input': disableSubmit }]"
-            @click="sendData"
+            type="submit"
+            :disabled="disableSubmitBtn"
+            :class="['btn black_bg', { 'disabled-input': disableSubmitBtn }]"
+            @click.prevent="sendData"
           >
             Slutför
           </button>
@@ -152,22 +148,17 @@
 
 <script>
 import axios from "axios";
-//import Check from "./Check";
+import Check from "./Check";
 
 export default {
   name: "Questions",
   components: {
-    //Check,
+    Check,
   },
   data() {
     return {
       currentStep: 1,
-      // user: {
-      //   name: "",
-      //   email: "",
-      //   phone: "",
-      //   company_name: "",
-      // },
+
       user: {
         name: null,
         email: null,
@@ -306,26 +297,6 @@ export default {
       return question.answer !== null;
     },
 
-    hasUserInfo() {
-      return (
-        this.user.name !== null ||
-        this.user.email !== null ||
-        this.user.phone !== null ||
-        this.user.company_name !== null
-      );
-    },
-
-    // disabledInput: function () {
-    //   if (
-    //     this.questions[3].reply === null ||
-    //     this.questions[3].reply === "nej"
-    //   ) {
-    //     this.disableInputText = true;
-    //   } else {
-    //     this.disableInputText = false;
-    //   }
-    // },
-
     disableSubmit: function () {
       const namn = this.user.name;
       const company_name = this.user.company_name;
@@ -369,15 +340,10 @@ export default {
 
       if (validEmail && validPhoneNumber && validName) {
         axios
-          .post(
-            "http://localhost/exaktaProjekt/nxt-vue/server/server.php",
-            {
-              questions: this.questions,
-              user: this.user,
-              // body: JSON.stringify(this.answers),
-            }
-            // { headers: { "Content-Type": "application/json" } }
-          )
+          .post("http://localhost/exaktaProjekt/nxt-vue/server/server.php", {
+            questions: this.questions,
+            user: this.user,
+          })
           .then((res) => {
             console.log(res);
             this.$swal({
@@ -411,11 +377,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.disabled-input {
-  background: #ddd;
-  cursor: context-menu;
-}
-
 .question__container {
   overflow: hidden;
 
@@ -429,11 +390,6 @@ export default {
     position: relative;
     overflow: hidden;
 
-    label {
-      font-size: 25px;
-      cursor: pointer;
-    }
-
     input[type="radio"] {
       cursor: pointer;
     }
@@ -446,32 +402,11 @@ export default {
       line-height: 43px;
     }
 
-    #form6 {
-      height: 100%;
-
-      input {
-        padding: 19px;
-        font-size: 18px;
-      }
-
-      .question-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    #form1 {
-      .question-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-      }
-    }
-
     form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       overflow-y: auto;
       width: 80%;
       margin: 0 auto;
@@ -482,22 +417,24 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
       transition: 0.5s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
 
       .question-container {
         width: 70%;
         height: 300px;
         overflow-y: auto;
-        text-align: center;
         display: flex;
         flex-direction: column;
-        justify-content: center;
 
         &::-webkit-scrollbar {
           background-color: #fff;
           width: 0px;
+        }
+
+        .question-option {
+          flex: 0.25 0 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
       }
 
@@ -506,12 +443,17 @@ export default {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        padding: 12px 0;
         margin-top: 30px;
         text-align: left;
 
         label {
-          flex: 0.5;
+          flex: 0.7;
+          font-size: 25px;
+          cursor: pointer;
+        }
+
+        input[type="radio"] {
+          flex: 0.3;
         }
       }
 
@@ -548,14 +490,36 @@ export default {
       }
     }
 
-    @media (max-width: 370px) {
-      .btn {
-        font-size: 12px;
-        padding: 10px 25px;
+    #form6 {
+      height: 100%;
+
+      input {
+        padding: 19px;
+        font-size: 18px;
+        border: 1px solid red;
       }
 
-      ::placeholder {
-        font-size: 12px;
+      .question-container {
+        border: 1px solid;
+        width: 100%;
+        height: 100%;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .disabled-input {
+      background: #ddd;
+      cursor: context-menu;
+
+      &:hover {
+        background: #ddd;
       }
     }
   }
@@ -601,28 +565,51 @@ export default {
     }
   }
 
-  @media (max-width: 550px) {
-    .questions {
-      h3 {
-        font-size: 30px;
-        line-height: 30px;
-      }
-
-      label {
-        font-size: 22px;
-      }
-    }
-
-    #form6 {
-      width: 95%;
+  @media (max-width: 700px) {
+    h3 {
+      font-size: 35px !important;
+      line-height: 40px !important;
     }
   }
 
-  @media (max-width: 426px) {
+  @media (max-width: 550px) {
     .question-container {
-      label {
-        flex: 0.8 !important;
-      }
+      width: 85% !important;
+    }
+    h3 {
+      font-size: 30px !important;
+      line-height: 30px !important;
+    }
+
+    label {
+      font-size: 22px !important;
+    }
+  }
+
+  #form6 {
+    width: 95%;
+  }
+
+  @media (max-width: 426px) {
+    #form6 div {
+      justify-content: space-evenly !important;
+    }
+
+    .question-option-radio label {
+      flex: 0.8 !important;
+    }
+
+    label {
+      font-size: 19.7px !important;
+    }
+
+    .btn {
+      font-size: 12px;
+      padding: 10px 25px;
+    }
+
+    ::placeholder {
+      font-size: 16px;
     }
   }
 
@@ -631,11 +618,9 @@ export default {
       font-size: 20px;
     }
 
-    .questions {
-      h3 {
-        font-size: 22px;
-        line-height: 24px;
-      }
+    h3 {
+      font-size: 22px !important;
+      line-height: 24px !important;
     }
 
     #form6 input {
@@ -644,14 +629,11 @@ export default {
     }
   }
 
-  @media (max-width: 300px) {
-    strong {
-      font-size: 16px;
-    }
-
-    .questions {
+  @media (max-width: 310px) {
+    .question-option-radio {
       label {
-        font-size: 18px;
+        flex: 1.5 !important;
+        font-size: 16px !important;
       }
     }
   }
