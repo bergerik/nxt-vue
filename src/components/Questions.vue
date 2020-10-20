@@ -25,7 +25,6 @@
             v-for="(option, optionIndex) in question.options"
             :key="optionIndex"
           >
-            <p>{{ optionIndex }}</p>
 
             <div class="optionInput">
               <label :for="'option-' + optionIndex + index">{{ option }}</label>
