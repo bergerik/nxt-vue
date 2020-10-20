@@ -20,13 +20,13 @@
         <div>
           <h3>{{ question.question }}</h3>
         </div>
-        <div class="answer__container" v-if="question.options">
+        <div class="question-container" v-if="question.options">
           <div
             v-for="(option, optionIndex) in question.options"
             :key="optionIndex"
+            class="question-option"
           >
-
-            <div class="optionInput">
+            <div class="question-option-radio">
               <label :for="'option-' + optionIndex + index">{{ option }}</label>
               <input
                 :id="'option-' + optionIndex + index"
@@ -35,7 +35,7 @@
                 v-model="question.answer"
               />
             </div>
-            <div class="step4__input" v-if="questionCondition(question)">
+            <div class="question-option-input" v-if="questionCondition(question, option)">
               <input
                 type="text"
                 v-model="question.text"
@@ -81,7 +81,7 @@
         <div>
           <h3>Kontakt uppgifter</h3>
         </div>
-        <div class="answer__container">
+        <div class="question-container">
           <div>
             <input
               type="text"
@@ -425,7 +425,7 @@ export default {
         font-size: 18px;
       }
 
-      .answer__container {
+      .question-container {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -435,7 +435,7 @@ export default {
     }
 
     #form1 {
-      .answer__container {
+      .question-container {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -457,7 +457,7 @@ export default {
       flex-direction: column;
       align-items: center;
 
-      .answer__container {
+      .question-container {
         width: 70%;
         height: 300px;
         overflow-y: auto;
@@ -470,52 +470,28 @@ export default {
           background-color: #fff;
           width: 0px;
         }
+      }
 
+      .question-option-radio {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 12px 0;
+        margin-top: 30px;
+        text-align: left;
+
+        label {
+          flex: 0.5;
+        }
+      }
+
+      .question-option-input {
         input[type="text"] {
           width: 100%;
-          padding: 10px;
-        }
-
-        div {
-          width: 100%;
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
-          padding: 12px 0;
-          margin-top: 30px;
-          text-align: left;
-
-          label {
-            flex: 0.5;
-          }
-        }
-
-        .inputText__container {
-          .step4__ja,
-          .step4__input,
-          .step4__nej {
-            border: none;
-          }
-
-          // .step4__ja {
-          //   transform: translateY(12px);
-          // }
-
-          display: flex;
-          flex-direction: column;
-
-          div {
-            margin-top: 0;
-            display: flex;
-            width: 100%;
-
-            input[type="text"] {
-              font-size: 18px;
-              transform: translateY(20px);
-              width: 100%;
-              padding: 10px 20px;
-            }
-          }
+          transform: translateY(20px);
+          font-size: 18px;
+          padding: 10px 20px;
         }
       }
 
@@ -622,7 +598,7 @@ export default {
   }
 
   @media (max-width: 426px) {
-    .answer__container {
+    .question-container {
       label {
         flex: 0.8 !important;
       }
