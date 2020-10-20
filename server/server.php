@@ -17,7 +17,7 @@ $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
 $pdo = new PDO($dsn, $user, $password);
 
 //If get post data
-if (!empty($post["body"])) {
+if (!empty($post["questions"])) {
   echo 'yes post is ok <br/>';
   var_dump($post); die();
 

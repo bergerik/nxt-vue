@@ -35,7 +35,10 @@
                 v-model="question.answer"
               />
             </div>
-            <div class="question-option-input" v-if="questionCondition(question, option)">
+            <div
+              class="question-option-input"
+              v-if="questionCondition(question, option)"
+            >
               <input
                 type="text"
                 v-model="question.text"
@@ -130,7 +133,15 @@
           >
             Tillbaka
           </button>
-          <button class="btn black_bg" type="button">Slutför</button>
+          <!-- :style="disableSubmitBtn && disabled" -->
+          <button
+            type="button"
+            :disabled="disableSubmit"
+            :class="['btn', 'black_bg', { 'disabled-input': disableSubmit }]"
+            @click="sendData"
+          >
+            Slutför
+          </button>
         </div>
       </form>
 
@@ -151,20 +162,26 @@ export default {
   data() {
     return {
       currentStep: 1,
+      // user: {
+      //   name: "",
+      //   email: "",
+      //   phone: "",
+      //   company_name: "",
+      // },
       user: {
-        name: "",
-        email: "",
-        phone: "",
-        company_name: "",
+        name: null,
+        email: null,
+        phone: null,
+        company_name: null,
       },
+
       questions: [
         // States
         {
           question: "Har du en e-handel idag?",
           options: ["Ja", "Nej"],
-          textConditions: ['Ja'],
+
           answer: null,
-          text: '',
         },
 
         {
@@ -195,7 +212,7 @@ export default {
         {
           question: "Använder ni något affärssystem?",
           options: ["Ja", "Nej"],
-          textConditions: ['Ja'],
+          textConditions: ["Ja"],
           answer: null,
         },
 
@@ -252,7 +269,9 @@ export default {
   methods: {
     questionCondition: function (question, compareTo) {
       const conditions = question.textConditions || [];
-      return conditions.includes(question.answer) && question.answer == compareTo;
+      return (
+        conditions.includes(question.answer) && question.answer == compareTo
+      );
     },
 
     goToStep: function (step) {
@@ -271,56 +290,65 @@ export default {
 
     calculatedStepPosition: function (step) {
       if (step == this.currentStep) {
-        return '50%';
+        return "50%";
       }
 
       if (step < this.currentStep) {
-        return '-100%';
+        return "-100%";
       }
 
       if (step > this.currentStep) {
-        return '200%';
+        return "200%";
       }
     },
 
-    hasAnswer: function(question) {
+    hasAnswer: function (question) {
       return question.answer !== null;
     },
 
-    disabledInput: function () {
-      if (
-        this.questions[3].reply === null ||
-        this.questions[3].reply === "nej"
-      ) {
-        this.disableInputText = true;
-      } else {
-        this.disableInputText = false;
-      }
+    hasUserInfo() {
+      return (
+        this.user.name !== null ||
+        this.user.email !== null ||
+        this.user.phone !== null ||
+        this.user.company_name !== null
+      );
     },
 
+    // disabledInput: function () {
+    //   if (
+    //     this.questions[3].reply === null ||
+    //     this.questions[3].reply === "nej"
+    //   ) {
+    //     this.disableInputText = true;
+    //   } else {
+    //     this.disableInputText = false;
+    //   }
+    // },
+
     disableSubmit: function () {
-      // const namn = this.questions[5].f_namn;
-      // const foretagsnamn = this.questions[5].f_foretagsnamn;
-      // const tel = this.questions[5].f_tel;
-      // const email = this.questions[5].f_email;
-      // if (
-      //   namn === null ||
-      //   namn === "" ||
-      //   namn.length < 3 ||
-      //   foretagsnamn === null ||
-      //   foretagsnamn === "" ||
-      //   foretagsnamn.length < 3 ||
-      //   tel === null ||
-      //   tel === "" ||
-      //   tel.length < 3 ||
-      //   email === null ||
-      //   email === "" ||
-      //   email.length < 3
-      // ) {
-      //   this.disableSubmitBtn = true;
-      // } else {
-      //   this.disableSubmitBtn = false;
-      // }
+      const namn = this.user.name;
+      const company_name = this.user.company_name;
+      const phone = this.user.phone;
+      const email = this.user.email;
+      if (
+        namn === null ||
+        namn === "" ||
+        namn.length < 3 ||
+        company_name === null ||
+        company_name === "" ||
+        company_name.length < 3 ||
+        phone === null ||
+        phone === "" ||
+        phone.length < 3 ||
+        email === null ||
+        email === "" ||
+        email.length < 3
+      ) {
+        this.disableSubmitBtn = true;
+      } else {
+        this.disableSubmitBtn = false;
+      }
     },
 
     sendData: function () {
@@ -344,7 +372,8 @@ export default {
           .post(
             "http://localhost/exaktaProjekt/nxt-vue/server/server.php",
             {
-              body: this.questions,
+              questions: this.questions,
+              user: this.user,
               // body: JSON.stringify(this.answers),
             }
             // { headers: { "Content-Type": "application/json" } }
@@ -382,7 +411,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .disabled-input {
   background: #ddd;
   cursor: context-menu;
