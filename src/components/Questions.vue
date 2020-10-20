@@ -56,9 +56,12 @@
             Tillbaka
           </button>
           <button
-            :disabled="question.answer === null"
-            class="btn black_bg"
-            :style="question.answer === null && disabled"
+            :disabled="!hasAnswer(question)"
+            :class="[
+              'btn',
+              'black_bg',
+              { 'disabled-input': !hasAnswer(question) },
+            ]"
             @click="goToNextStep()"
             type="button"
             v-if="currentStep < totalSteps"
@@ -220,10 +223,6 @@ export default {
       // When btn is disabled
       disableInputText: false,
       disableSubmitBtn: false,
-      disabled: {
-        backgroundColor: "#dddddd",
-        cursor: "context-menu",
-      },
     };
   },
 
@@ -282,6 +281,11 @@ export default {
         return "200%";
       }
     },
+
+    hasAnswer: function(question) {
+      return question.answer !== null;
+    },
+
     disabledInput: function () {
       if (
         this.questions[3].reply === null ||
@@ -377,6 +381,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.disabled-input {
+  background: #ddd;
+  cursor: context-menu;
+}
+
 .question__container {
   overflow: hidden;
 
