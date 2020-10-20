@@ -26,13 +26,23 @@
             :key="optionIndex"
           >
             <p>{{ optionIndex }}</p>
-            <label :for="'option-' + optionIndex + index">{{ option }}</label>
-            <input
-              :id="'option-' + optionIndex + index"
-              type="radio"
-              v-bind:value="option"
-              v-model="question.answer"
-            />
+
+            <div class="optionInput">
+              <label :for="'option-' + optionIndex + index">{{ option }}</label>
+              <input
+                :id="'option-' + optionIndex + index"
+                type="radio"
+                v-bind:value="option"
+                v-model="question.answer"
+              />
+            </div>
+            <div class="step4__input" v-if="questionCondition(question)">
+              <input
+                type="text"
+                v-model="question.text"
+                placeholder="Vilket?"
+              />
+            </div>
           </div>
         </div>
 
@@ -181,7 +191,9 @@ export default {
         {
           question: "Använder ni något affärssystem?",
           options: ["Ja", "Nej"],
-          text: "",
+          condition: {
+            Ja: "text",
+          },
           answer: null,
         },
 
@@ -195,22 +207,6 @@ export default {
           answer: null,
         },
       ],
-
-      form1: "",
-      form2: "",
-      form3: "",
-      form4: "",
-      form5: "",
-      form6: "",
-      progress: "",
-
-      // Visibility: hidden; for element!, when i click then show the element
-      // showForm1: "visible",
-      // showForm2: "hidden",
-      // showForm3: "hidden",
-      // showForm4: "hidden",
-      // showForm5: "hidden",
-      // showForm6: "hidden",
 
       // validation var for styling input field  (true/false)
       invalidEmail: false,
@@ -256,6 +252,10 @@ export default {
   },
 
   methods: {
+    questionCondition: function (question) {
+      return question.condition && question.condition[question.answer];
+    },
+
     goToStep: function (step) {
       if (step >= 1 && step <= this.totalSteps) {
         this.currentStep = step;
@@ -488,9 +488,9 @@ export default {
             border: none;
           }
 
-          .step4__ja {
-            transform: translateY(12px);
-          }
+          // .step4__ja {
+          //   transform: translateY(12px);
+          // }
 
           display: flex;
           flex-direction: column;
