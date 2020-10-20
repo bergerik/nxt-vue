@@ -270,15 +270,15 @@ export default {
 
     calculatedStepPosition: function (step) {
       if (step == this.currentStep) {
-        return "50%";
+        return '50%';
       }
 
       if (step < this.currentStep) {
-        return "-100%";
+        return '-100%';
       }
 
       if (step > this.currentStep) {
-        return "200%";
+        return '200%';
       }
     },
 
