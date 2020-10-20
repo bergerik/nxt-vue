@@ -162,7 +162,9 @@ export default {
         {
           question: "Har du en e-handel idag?",
           options: ["Ja", "Nej"],
+          textConditions: ['Ja'],
           answer: null,
+          text: '',
         },
 
         {
@@ -193,9 +195,7 @@ export default {
         {
           question: "Använder ni något affärssystem?",
           options: ["Ja", "Nej"],
-          condition: {
-            Ja: "text",
-          },
+          textConditions: ['Ja'],
           answer: null,
         },
 
@@ -250,8 +250,9 @@ export default {
   },
 
   methods: {
-    questionCondition: function (question) {
-      return question.condition && question.condition[question.answer];
+    questionCondition: function (question, compareTo) {
+      const conditions = question.textConditions || [];
+      return conditions.includes(question.answer) && question.answer == compareTo;
     },
 
     goToStep: function (step) {
