@@ -519,14 +519,6 @@ export default {
       }
     }
 
-    #form2,
-    #form3,
-    #form4,
-    #form5,
-    #form6 {
-      left: 1200px;
-    }
-
     @media (max-width: 370px) {
       .btn {
         font-size: 12px;
