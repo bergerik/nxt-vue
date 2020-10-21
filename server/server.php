@@ -72,11 +72,24 @@ if (!empty($post['questions'])) {
     $saveUserInfo = $pdo->prepare($userInfo);
     $saveUserInfo->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'company_name' => $company_name]);
 
-    echo 'saved userInfo to mySQL';
+    $pdo->beginTransaction();
 
-    // Get last ID
-    $userID = 'SELECT * from users';
+    echo 'last id => ' . $pdo->lastInsertId();
+
+    echo 'saved userInfo to mySQL';
   }
+
+  // Get the last ID
+  $lastUserID = 'SELECT id FROM users WHERE id = LAST_INSERT_ID()';
+  // $sql = 'SELECT id from users';
+
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute(['id' => $sql]);
+  $lastUserID = $stmt->fetch();
+  echo 'last id => ' . $lastUserID;
+  // $stmt = $pdo->query("SELECT id FROM users WHERE id = LAST_INSERT_ID()");
+  // $lastUserID = $stmt->fetch();
+  // $lastUserID = 'SELECT MAX(id) FROM users';
 
   // Get questions and answers and save it to MySQL
   foreach ($post['questions'] as $questions) {
