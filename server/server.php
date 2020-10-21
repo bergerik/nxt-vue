@@ -22,26 +22,7 @@ $name = $company_name = $phone = $email = $text = null;
 $question = $answer = null;
 
 if (!empty($post['questions'])) {
-  foreach ($post['questions'] as $questions) {
-    // print_r($questions);
-    // if(in_array('text', $questions)) echo 'is in array';
-    // print_r($questions['text']);
-    // print_r($questions['question'] . ' => ' . $questions['answer'] . ' => ' . $questions['text'] . '     ');
-
-
-    // Save to MySQL
-    // $question = $questions['question'];
-    // $answer = $questions['answer'] . ', ' . $questions['text'];
-
-    // $sql = 'INSERT questions(question, answer) VALUES(:question, :answer)';
-    // $save = $pdo->prepare($sql);
-    // $save->execute(['question' => $question, 'answer' => $answer]);
-
-    // echo 'Saved to MySQL';
-  }
-
-  // echo '/////////////////////////////////////';
-
+  // Get user data first and save it to MySQL
   foreach ($post['user'] as $key => $value) {
     if ($key == 'name') $name = $value;
     if ($key == 'company_name') $company_name = $value;
@@ -49,34 +30,66 @@ if (!empty($post['questions'])) {
     if ($key == 'email') $email = $value;
   }
 
-  // echo $name;
-  // echo $company_name;
-  // echo $phone;
-  // echo $email;
-
-
-
   // ************* Validate user data *************
   // Validate email
 
   // remove illegal characters from email
   $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
+  // Validate email
   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo 'email is valid';
   } else {
+    $email = null;
     echo 'email is not valid!!!';
   }
 
+  // validate name
+  if (!preg_match("/^([a-zA-Z ]){2,30}$/i", $name)) {
+    $name = null;
+    echo 'name invalid!!! <br/>';
+  }
 
-  // if (filter_var($email, FILTER_VALIDATE_EMAIL))
+  // validate phone
+  if (!preg_match("/^\+?[0-9]+$/", $phone)) {
+    $phone = null;
+    echo 'phone number invalid!!!! <br/>';
+  }
 
-  // Save user info to MySQL
-  $sql = 'INSERT users(name, email, phone, company_name) VALUES(:name, :email, :phone, :company_name)';
-  $saveUserInfo = $pdo->prepare($sql);
-  $saveUserInfo->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'company_name' => $company_name]);
+  // validagte company name
+  if (!preg_match("/^((?![\^!@#$*~ <>?]).)((?![\^!@#$*~<>?]).){0,73}((?![\^!@#$*~ <>?]).)$/i", $company_name)) {
+    $company_name = null;
+    echo 'företagsnamn invalid!!!';
+  }
 
-  echo 'saved userInfo to mySQL';
+
+  if ($email === null || $name === null || $phone === null || $company_name === null) {
+    echo 'kan inte spara!';
+  } else {
+
+    // Save user info to MySQL
+    $userInfo = 'INSERT users(name, email, phone, company_name) VALUES(:name, :email, :phone, :company_name)';
+    $saveUserInfo = $pdo->prepare($userInfo);
+    $saveUserInfo->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'company_name' => $company_name]);
+
+    echo 'saved userInfo to mySQL';
+
+    // Get last ID
+    $userID = 'SELECT * from users';
+  }
+
+  // Get questions and answers and save it to MySQL
+  foreach ($post['questions'] as $questions) {
+    // Save to MySQL
+    $question = $questions['question'];
+    $answer = $questions['answer'] . ', ' . $questions['text'];
+
+    $sql = 'INSERT questions(question, answer) VALUES(:question, :answer)';
+    $saveValues = $pdo->prepare($sql);
+    $saveValues->execute(['question' => $question, 'answer' => $answer]);
+
+    echo 'Saved to MySQL';
+  }
 }
 // foreach($post)
 // echo "</pre>";
