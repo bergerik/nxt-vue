@@ -3,7 +3,7 @@
     <div class="step-row">
       <div :style="{ width: progressBarWidth + '%' }" id="progress"></div>
       <div class="step-col">
-        <strong>{{ currentStep }}</strong>
+        <strong>{{ currentStep }} / {{ totalSteps }} </strong>
       </div>
     </div>
 
@@ -15,6 +15,7 @@
           visibility: currentStep == index + 1 ? 'visible' : 'hidden',
         }"
         :key="index"
+        @submit.prevent=""
       >
         <div>
           <h3>{{ question.question }}</h3>
@@ -340,10 +341,14 @@ export default {
 
       if (validEmail && validPhoneNumber && validName) {
         axios
-          .post("http://localhost/exaktaProjekt/nxt-vue/server/server.php", {
-            questions: this.questions,
-            user: this.user,
-          })
+          .post(
+            "http://localhost/exaktaProjekt/nxt-vue/server/server.php",
+            {
+              questions: this.questions,
+              user: this.user,
+            }
+            // { headers: { "Content-Type": "application/json" } }
+          )
           .then((res) => {
             console.log(res);
             this.$swal({
@@ -496,11 +501,9 @@ export default {
       input {
         padding: 19px;
         font-size: 18px;
-        border: 1px solid red;
       }
 
       .question-container {
-        border: 1px solid;
         width: 100%;
         height: 100%;
 

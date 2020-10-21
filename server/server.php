@@ -16,18 +16,85 @@ $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
 // create PDO instance
 $pdo = new PDO($dsn, $user, $password);
 
-//If get post data
-if (!empty($post["questions"])) {
-  echo 'yes post is ok <br/>';
-  var_dump($post); die();
+// echo "<pre>";
+$name = $company_name = $phone = $email = $text = null;
 
-  foreach ($post['body'] as $key => $value) {
-    echo $key . ' = ' . $value;
+$question = $answer = null;
+
+if (!empty($post['questions'])) {
+  foreach ($post['questions'] as $questions) {
+    // print_r($questions);
+    // if(in_array('text', $questions)) echo 'is in array';
+    // print_r($questions['text']);
+    // print_r($questions['question'] . ' => ' . $questions['answer'] . ' => ' . $questions['text'] . '     ');
+
+
+    // Save to MySQL
+    // $question = $questions['question'];
+    // $answer = $questions['answer'] . ', ' . $questions['text'];
+
+    // $sql = 'INSERT questions(question, answer) VALUES(:question, :answer)';
+    // $save = $pdo->prepare($sql);
+    // $save->execute(['question' => $question, 'answer' => $answer]);
+
+    // echo 'Saved to MySQL';
   }
 
-} else {
-  echo 'post is not ok <br/>';
+  // echo '/////////////////////////////////////';
+
+  foreach ($post['user'] as $key => $value) {
+    if ($key == 'name') $name = $value;
+    if ($key == 'company_name') $company_name = $value;
+    if ($key == 'phone') $phone = $value;
+    if ($key == 'email') $email = $value;
+  }
+
+  // echo $name;
+  // echo $company_name;
+  // echo $phone;
+  // echo $email;
+
+
+
+  // ************* Validate user data *************
+  // Validate email
+
+  // remove illegal characters from email
+  $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo 'email is valid';
+  } else {
+    echo 'email is not valid!!!';
+  }
+
+
+  // if (filter_var($email, FILTER_VALIDATE_EMAIL))
+
+  // Save user info to MySQL
+  $sql = 'INSERT users(name, email, phone, company_name) VALUES(:name, :email, :phone, :company_name)';
+  $saveUserInfo = $pdo->prepare($sql);
+  $saveUserInfo->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'company_name' => $company_name]);
+
+  echo 'saved userInfo to mySQL';
 }
+// foreach($post)
+// echo "</pre>";
+
+// //If get post data
+// if (!empty($post["questions"])) {
+//   // echo 'yes post is ok <br/>';
+//   // echo $post.'<br/>';
+//   // var_dump($post['questions']); die();
+
+//   foreach ($post['questions'] as $key => $value) {
+//     echo $key . ' = ' . $value;
+//     var_dump( $key . ' = ' . $value); die();
+//   }
+
+// } else {
+//   echo 'post is not ok <br/>';
+// }
 
 
 // $data = [
@@ -133,7 +200,7 @@ if (!empty($post["questions"])) {
 // // echo $email;
 
 
-// // Save data to db
+// Save data to db
 // $a = $data['body'][0]['a'] . ', ' . $data['body'][0]['a_svar'];
 // $b = $data['body'][1]['b'] . ', ' . $data['body'][1]['b_svar'];
 // $c = $data['body'][2]['c'] . ', ' . $data['body'][2]['c_svar'];
