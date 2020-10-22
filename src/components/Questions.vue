@@ -98,7 +98,7 @@
               type="text"
               v-model="user.company_name"
               placeholder="Företagsnamn"
-              minlength="2"
+              minlength="1"
             />
 
             <input
@@ -341,31 +341,37 @@ export default {
 
       if (validEmail && validPhoneNumber && validName) {
         axios
-          .post(
-            "http://localhost/exaktaProjekt/nxt-vue/server/server.php",
-            {
-              questions: this.questions,
-              user: this.user,
-            }
-            // { headers: { "Content-Type": "application/json" } }
-          )
+          .post("http://localhost/exaktaProjekt/nxt-vue/server/server.php", {
+            questions: this.questions,
+            user: this.user,
+          })
           .then((res) => {
-            console.log(res);
-            this.$swal({
-              icon: "success",
-              title: "Svin Bra!",
-              text: "Dina uppgifter har blivit skickade",
-              confirmButtonText: "Fortsätt",
-            }).then(() => {
-              window.location.replace("https://nxte.se/");
-            });
+            if (res.data.response === "success") {
+              this.$swal({
+                icon: "success",
+                title: "Svin Bra!",
+                text: "Dina uppgifter har blivit skickade",
+                confirmButtonText: "Fortsätt",
+              }).then(() => {
+                window.location.replace("https://nxte.se/");
+              });
+            } else {
+              this.$swal({
+                icon: "error",
+                title: "Oops!",
+                text: "Kunde inte skicka dina uppgifter",
+                type: "warning",
+                confirmButtonText: "Försök igen",
+                showCloseButton: true,
+              });
+            }
           })
           .catch((err) => {
             console.log(err);
             this.$swal({
               icon: "error",
-              title: "Oj då!",
-              text: "Något gick fel :(",
+              title: "Något gick fel",
+              text: "Servern är nere, försök igen senare",
               type: "warning",
               confirmButtonText: "Försök igen",
               showCloseButton: true,
