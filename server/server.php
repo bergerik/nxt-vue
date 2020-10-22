@@ -21,6 +21,9 @@ $name = $company_name = $phone = $email = $text = null;
 
 $question = $answer = $lastUserID = null;
 
+// Set variables for response if could save to MySQL or not
+$savedQuestion = $savedUsers = false;
+
 if (!empty($post['questions'])) {
   // Get user data first and save it to MySQL
   foreach ($post['user'] as $key => $value) {
@@ -37,33 +40,34 @@ if (!empty($post['questions'])) {
 
   // Validate email
   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo 'email is valid';
+    // echo 'email is valid';
   } else {
     $email = null;
-    echo 'email is not valid!!!';
+    // echo 'email is not valid!!!';
   }
 
   // validate name
   if (!preg_match("/^([a-zA-Z ]){2,30}$/i", $name)) {
     $name = null;
-    echo 'name invalid!!! <br/>';
+    // echo 'name invalid!!! <br/>';
   }
 
   // validate phone
   if (!preg_match("/^\+?[0-9]+$/", $phone)) {
     $phone = null;
-    echo 'phone number invalid!!!! <br/>';
+    // echo 'phone number invalid!!!! <br/>';
   }
 
   // validagte company name
   if (!preg_match("/^((?![\^!@#$*~ <>?]).)((?![\^!@#$*~<>?]).){0,73}((?![\^!@#$*~ <>?]).)$/i", $company_name)) {
     $company_name = null;
-    echo 'företagsnamn invalid!!!';
+    // echo 'företagsnamn invalid!!!';
   }
 
 
   if ($email === null || $name === null || $phone === null || $company_name === null) {
-    echo 'kan inte spara!';
+    // echo 'kan inte spara!';
+    $savedUsers = null;
   } else {
 
     // Save user info to MySQL
@@ -71,10 +75,10 @@ if (!empty($post['questions'])) {
     $saveUserInfo = $pdo->prepare($userInfo);
     $saveUserInfo->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'company_name' => $company_name]);
 
-    // Save last user id in variable so i can use it in user_id in questions
     $lastUserID = $pdo->lastInsertId();
 
-    echo 'saved userInfo to mySQL';
+    // echo 'saved userInfo to mySQL';
+    $savedUsers = true;
   }
 
 
@@ -82,12 +86,28 @@ if (!empty($post['questions'])) {
   foreach ($post['questions'] as $questions) {
     // Save to MySQL
     $question = $questions['question'];
-    $answer = $questions['answer'] . ', ' . $questions['text'];
+
+    if (!isset($questions['text'])) {
+      $answer = $questions['answer'];
+    } else {
+      $answer = $questions['answer'] . ', ' . $questions['text'];
+    }
+
 
     $sql = 'INSERT questions(question, answer, user_id) VALUES(:question, :answer, :user_id)';
     $saveValues = $pdo->prepare($sql);
     $saveValues->execute(['question' => $question, 'answer' => $answer, 'user_id' => $lastUserID]);
 
-    echo 'Saved to MySQL';
+    // echo 'Saved to MySQL';
+    $savedQuestion = true;
   }
+
+  $response;
+  if ($savedQuestion && $savedUsers) {
+    $response = ['response' => 'success'];
+  } else {
+    $response = ['response' => 'failed'];
+  }
+
+  echo json_encode($response);
 }
