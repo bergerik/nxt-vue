@@ -63,7 +63,7 @@ if (!empty($post['questions'])) {
     $savedUsers = null;
   } else {
     // Save user info to MySQL
-    $userInfo = 'INSERT question_user(name, email, phone, company_name) VALUES(:name, :email, :phone, :company_name)';
+    $userInfo = 'INSERT question_users(name, email, phone, company_name) VALUES(:name, :email, :phone, :company_name)';
     $saveUserInfo = $pdo->prepare($userInfo);
     $saveUserInfo->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'company_name' => $company_name]);
 
