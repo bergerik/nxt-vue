@@ -28,15 +28,15 @@ div {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   div {
     height: 180px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   div {
-    height: 150px;
+    height: 140px;
   }
 }
 </style>

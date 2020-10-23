@@ -349,8 +349,9 @@ export default {
             if (res.data.response === "success") {
               this.$swal({
                 icon: "success",
-                title: "Svin Bra!",
-                text: "Dina uppgifter har blivit skickade",
+                title: "Tack!",
+                text:
+                  "Dina uppgifter har blivit skickade. Vi kommer att kontakta dig inom kort.",
                 confirmButtonText: "Fortsätt",
               }).then(() => {
                 window.location.replace("https://nxte.se/");
@@ -359,7 +360,8 @@ export default {
               this.$swal({
                 icon: "error",
                 title: "Oops!",
-                text: "Kunde inte skicka dina uppgifter",
+                text:
+                  "Kunde inte skicka dina uppgifter, har du fyllt i alla fält?",
                 type: "warning",
                 confirmButtonText: "Försök igen",
                 showCloseButton: true,
