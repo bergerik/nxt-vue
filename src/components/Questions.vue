@@ -341,7 +341,7 @@ export default {
 
       if (validEmail && validPhoneNumber && validName) {
         axios
-          .post("http://localhost/exaktaProjekt/nxt-vue/server/server.php", {
+          .post("https://kampanj.nxte.se/server/server.php", {
             questions: this.questions,
             user: this.user,
           })
